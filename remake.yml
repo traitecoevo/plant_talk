@@ -1,0 +1,127 @@
+packages:
+  - plant
+  - grImport
+
+sources:
+  - R
+
+plot_options:
+  6by4:
+    width: 6
+    height: 4
+  4by4:
+    width: 4
+    height: 4
+
+targets:
+  all:
+    quiet: true
+    depends:
+      - figures
+
+  figures:
+    depends:
+      - output/figures/fitness-1.pdf
+      - output/figures/fitness-2.pdf
+      - output/figures/fitness-3.pdf
+      - output/figures/fitness-4.pdf
+      - output/figures/lifecycle-1.pdf
+      - output/figures/lifecycle-2.pdf
+      - output/figures/plantmodel-1.pdf
+      - output/figures/plantmodel-2.pdf
+      - output/figures/plantmodel-3.pdf
+      - output/figures/plantmodel-4.pdf
+      - output/figures/plantmodel-5.pdf
+      - output/figures/plantmodel-6.pdf
+      - output/figures/plantmodel-7.pdf
+      - output/figures/lightenv-1.pdf
+      - output/figures/lightenv-2.pdf
+      - output/figures/lightenv-3.pdf
+      - output/figures/blackbox.pdf
+      - output/figures/blackbox-small.pdf
+      - output/figures/competition-1.pdf
+      - output/figures/competition-2.pdf
+      - output/figures/competition-3.pdf
+
+  # data objects
+  res:
+    command: simulation()
+  seed:
+    command:
+      - get.pic("pics/acorn.eps")
+      - colour.picture(., I("black"))
+  tree:
+    command: get.pic("pics/tree.eps")
+
+  # figures
+  output/figures/fitness-1.pdf:
+    command: fig.fitness(1, seed, tree, res)
+    plot: 6by4
+
+  output/figures/fitness-2.pdf:
+    command: fig.fitness(2, seed, tree, res)
+    plot: 6by4
+
+  output/figures/fitness-3.pdf:
+    command: fig.fitness(3, seed, tree, res)
+    plot: 6by4
+
+  output/figures/fitness-4.pdf:
+    command: fig.fitness(4, seed, tree, res)
+    plot: 6by4
+
+  output/figures/lifecycle-1.pdf:
+    command: fig.lifecycle(1, seed, tree)
+    plot: 4by4
+  output/figures/lifecycle-2.pdf:
+    command: fig.lifecycle(2, seed, tree)
+    plot: 4by4
+
+  output/figures/plantmodel-1.pdf:
+    command: fig.plantmodel(1, tree, res)
+    plot: 6by4
+  output/figures/plantmodel-2.pdf:
+    command: fig.plantmodel(2, tree, res)
+    plot: 6by4
+  output/figures/plantmodel-3.pdf:
+    command: fig.plantmodel(3, tree, res)
+    plot: 6by4
+  output/figures/plantmodel-4.pdf:
+    command: fig.plantmodel(4, tree, res)
+    plot: 6by4
+  output/figures/plantmodel-5.pdf:
+    command: fig.plantmodel(5, tree, res)
+    plot: 6by4
+  output/figures/plantmodel-6.pdf:
+    command: fig.plantmodel(6, tree, res)
+    plot: 6by4
+  output/figures/plantmodel-7.pdf:
+    command: fig.plantmodel(7, tree, res)
+    plot: 6by4
+
+  output/figures/lightenv-1.pdf:
+    command: fig.lightenv(1, tree, res)
+    plot: 6by4
+  output/figures/lightenv-2.pdf:
+    command: fig.lightenv(2, tree, res)
+    plot: 6by4
+  output/figures/lightenv-3.pdf:
+    command: fig.lightenv(3, tree, res)
+    plot: 6by4
+
+  output/figures/blackbox.pdf:
+    command: fig.blackbox(tree, res)
+    plot: 4by4
+  output/figures/blackbox-small.pdf:
+    command: fig.blackbox(tree, res, embed=TRUE)
+    plot: 4by4
+
+  output/figures/competition-1.pdf:
+    command: fig.competition(1)
+    plot: 6by4
+  output/figures/competition-2.pdf:
+    command: fig.competition(2)
+    plot: 6by4
+  output/figures/competition-3.pdf:
+    command: fig.competition(3)
+    plot: 6by4

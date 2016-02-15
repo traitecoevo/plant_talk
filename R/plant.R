@@ -1,9 +1,21 @@
-fig.fitness <- function(plt, draft=FALSE) {
+simulation <- function() {
+  p0 <- scm_base_parameters("FF16")
+  p0$control$equilibrium_nsteps <- 30
+  p0$control$equilibrium_solver_name <- "hybrid"
+  p0$disturbance_mean_interval <- 30.0
+
+  p1 <- expand_parameters(trait_matrix(0.0825, "lma"), p0, FALSE)
+  # Run everything out to equilibrium
+  p1_eq <- equilibrium_seed_rain(p1)
+  #This collects information about the state of the system at every ODE step:
+  run_scm_collect(p1_eq)
+}
+
+fig.fitness <- function(option, seed, tree, res, draft=FALSE) {
   reset()
-  acorn <- colour.picture(get.pic("pics/acorn.eps"), "black")
   w <- 0.33
 
-  da <- unit(0.1, "snpc")  
+  da <- unit(0.1, "snpc")
   arr <- arrow(type="closed", angle=20,
                length=convertWidth(da * 0.5, "cm"))
   arr.gp <- gpar(fill="black", lwd=3)
@@ -15,8 +27,8 @@ fig.fitness <- function(plt, draft=FALSE) {
   y0 <- unit(0.5, "npc")
 
   pushViewport(viewport(x=w2 * 0.5, width=w2))
-  grid.picture(colour.picture(acorn, "black"), y=0.5 + dh, height=0.15)
-  grid.picture(colour.picture(acorn, "grey30"), y=0.5 - dh, height=0.15)
+  grid.picture(seed, y=0.5 + dh, height=0.15)
+  grid.picture(colour.picture(seed, "grey30"), y=0.5 - dh, height=0.15)
 
   xtrait <- unit(0.5, "npc") - unit(1.5, "lines")
   grid.text(expression(bgroup("{", atop(x[a], y[a]), "}")),
@@ -24,7 +36,7 @@ fig.fitness <- function(plt, draft=FALSE) {
   grid.text(expression(bgroup("{", atop(x[b], y[b]), "}")),
             xtrait, 0.5 - dh, just="right")
 
-  if (plt == 1) {
+  if (option == 1) {
     popViewport()
     return()
   }
@@ -39,25 +51,25 @@ fig.fitness <- function(plt, draft=FALSE) {
                 unit(1, "npc") - da,   x0 - da * 0.33,
                 arrow=arr, gp=arr.gp)
   popViewport()
-  
-  if (plt < 4) {
+
+  if (option < 4) {
     grid.rect(width=unit(w, "snpc"), height=unit(w, "snpc"),
               gp=gpar(fill="black"))
   } else {
     pushViewport(viewport(width=unit(w, "snpc"),
                           height=unit(w, "snpc"),
                           gp=gpar(cex=0.25, lex=0.5)))
-    fig.blackbox(draft=draft, embed=TRUE)
+    fig.blackbox(tree, res, draft=draft, embed=TRUE)
     popViewport()
   }
-  
-  if (plt == 2)
+
+  if (option == 2)
     return()
 
   pushViewport(viewport(x=unit(1, "npc") - w2 * 0.5, width=w2))
 
-  grid.picture(colour.picture(acorn, "black"), y=0.5 + dh, height=0.15)
-  grid.picture(colour.picture(acorn, "grey30"), y=0.5 - dh, height=0.15)
+  grid.picture(seed, y=0.5 + dh, height=0.15)
+  grid.picture(colour.picture(seed, "grey30"), y=0.5 - dh, height=0.15)
   grid.text(expression(N[a] * minute), xlab, 0.5 + dh, just="left",
             gp=gpar(cex=0.7))
   grid.text(expression(N[b] * minute), xlab, 0.5 - dh, just="left",
@@ -72,16 +84,14 @@ fig.fitness <- function(plt, draft=FALSE) {
   popViewport()
 }
 
-fig.lifecycle <- function(plt) {
+fig.lifecycle <- function(option, seed, tree) {
   reset()
-  acorn <- colour.picture(get.pic("pics/acorn.eps"), "black")
-  tree <- get.pic("pics/tree.eps")
 
   x0 <- unit(.15, "npc")
   w <- unit(.2, "snpc")
 
-  grid.picture(acorn, x0, just=c("centre", "centre"), height=w)
-  if (plt == 2)
+  grid.picture(seed, x0, just=c("centre", "centre"), height=w)
+  if (option == 2)
     grid.picture(tree,  unit(1, "npc") - x0,
                  just=c("centre", "centre"), height=2*w)
   wc <- convertWidth(unit(1, "npc") - 2 * x0, "cm")
@@ -89,7 +99,7 @@ fig.lifecycle <- function(plt) {
                         xscale=c(-1, 1), yscale=c(-1, 1)))
 
   dt <- pi * 0.25
-  if (plt == 1) {
+  if (option == 1) {
     theta <- seq(0, 2 * pi - dt, length=101) + pi + dt / 2
     grid.lines(cos(theta), sin(theta), default.units="native",
                gp=gpar(lwd=4, fill="black"),
@@ -108,9 +118,8 @@ fig.lifecycle <- function(plt) {
   popViewport()
 }
 
-fig.plantmodel <- function(plt) {
+fig.plantmodel <- function(option, tree, res) {
   reset()
-  tree <- get.pic("pics/tree.eps")
 
   ## 1: Space for the plant:
   p <- 0.4
@@ -124,7 +133,7 @@ fig.plantmodel <- function(plt) {
 
   grid.picture(tree, x0, y0, just=c("centre", "centre"), height=h * fudge)
 
-  if (plt > 1) {
+  if (option > 1) {
     x <- x0 - h * (1/r) * 0.5 - unit(.5, "lines")
     grid.segments(x, y0 - h * 0.5,
                   x, y0 + h * 0.5,
@@ -142,7 +151,7 @@ fig.plantmodel <- function(plt) {
     m.y2 <- m.y1 - da
     grid.segments(m.x1, m.y1, m.x2, m.y2, arrow=arr, gp=arr.gp)
     grid.text("Mortality", m.x2, m.y2 - unit(.7, "lines"))
-    
+
     f.x1 <- m.x1
     f.x2 <- f.x1 + da
     f.y1 <- y0 + h * 0.5 + unit(0.5, "lines")
@@ -152,7 +161,7 @@ fig.plantmodel <- function(plt) {
   }
   popViewport()
 
-  if (plt <= 2)
+  if (option <= 2)
     return()
 
   ## Then, figures on the RHS.
@@ -163,20 +172,19 @@ fig.plantmodel <- function(plt) {
   b <- unit(1, "lines")
   w <- (unit(1, "npc") - 4 * b) * (1/3)
 
-  res <- readRDS("output/tree.output.rds")
   ## Hmm, I never exposed q() and Q() from the Plant object, so we have
   ## to use the reference model here.  Oh well.
-  plant <- make.reference()
+  plant <- make_reference_plant() #make.reference()
   ## Tweak the Eta to match the picture better!
   assign("p.eta", 5, environment(plant$leaf.pdf))
 
   ## TODO: perhaps rescale the light environment a bit to make the
   ## drop-off harsher, so that the assimilation curve looks weirder.
 
-  env <- res$light.env[[92]]
-  h.max <- max(env[,1])
+  env <- res$light_env[[length(res$light_env)]]
+  h.max <- max(env[,"height"])
   height <- seq(0, h.max, length=201)
-  light.env <- splinefun(env[,1], env[,2])
+  light.env <- splinefun(env[,"height"], env[,"canopy_openness"])
 
   assim.h <- function(x, h)
     cleanup(plant$leaf.pdf(x, h) * plant$Assim(plant$LeafArea(h),
@@ -195,7 +203,7 @@ fig.plantmodel <- function(plt) {
              gp=gpar(lwd=3, lineend="butt"), default.units="native")
   popViewport()
 
-  if (plt == 3)
+  if (option == 3)
     return()
 
   pushViewport(viewport(x=2 * b + w, width=w, just="left",
@@ -206,13 +214,13 @@ fig.plantmodel <- function(plt) {
              gp=gpar(lwd=3, lineend="butt"), default.units="native")
   popViewport()
 
-  if (plt == 4)
+  if (option == 4)
     return()
-  
+
   pushViewport(viewport(x=3 * b + 2 * w, width=w, just="left",
                         xscale=range(info$assim), yscale=c(0, h.max)))
   grid.text("Photosynthesis", y=unit(-1, "lines"))
-  if (plt > 5)
+  if (option > 5)
     grid.polygon(info$assim, info$height,
                  gp=gpar(fill="grey", col=NA),
                  default.units="native")
@@ -220,7 +228,7 @@ fig.plantmodel <- function(plt) {
   grid.lines(info$assim, info$height,
              gp=gpar(lwd=3, lineend="butt"), default.units="native")
 
-  if (plt > 6) {
+  if (option > 6) {
     ## This one wants labels...
     a.y1 <- unit(-1.75, "lines")
     a.dx <- unit(-0.3, "snpc")
@@ -246,18 +254,16 @@ fig.plantmodel <- function(plt) {
   }
 }
 
-fig.lightenv <- function(plt) {
+fig.lightenv <- function(option, tree, res) {
   reset()
-  tree <- get.pic("pics/tree.eps")
 
-  res <- readRDS("output/tree.output.rds")
-  plant <- make.reference()
+  plant <- make_reference_plant() #make.reference()
   assign("p.eta", 5, environment(plant$leaf.pdf))
-  
-  env <- res$light.env[[92]]
-  h.max <- max(env[,1])
+
+  env <- res$light_env[[length(res$light_env)]]
+  h.max <- max(env[,"height"])
   height <- seq(0, h.max, length=201)
-  light.env <- splinefun(env[,1], env[,2])
+  light.env <- splinefun(env[,"height"], env[,"canopy_openness"])
 
   ## Let's come up with a vector of heights to make trees at:
   set.seed(10)
@@ -269,7 +275,7 @@ fig.lightenv <- function(plt) {
   w <- aspect.ratio(tree) * heights
   w <- w / sum(w)
   x <- cumsum(w)
-  r <- aspect.ratio(tree)  
+  r <- aspect.ratio(tree)
 
   hh <- seq(0, 1, length=101)
   aa <- cleanup(plant$leaf.pdf(hh, 1))
@@ -285,7 +291,7 @@ fig.lightenv <- function(plt) {
   }
   popViewport()
 
-  if (plt == 1)
+  if (option == 1)
     return()
 
   pushViewport(viewport(y=0.75, height=max(widths) * r, just=c("top")))
@@ -300,33 +306,32 @@ fig.lightenv <- function(plt) {
   }
   popViewport()
 
-  if (plt == 2)
+  if (option == 2)
     return()
 
   pushViewport(viewport(x=0.5, y=unit(2, "lines"), width=0.3, height=0.4,
                         just="bottom", xscale=c(0, 1),
-                        yscale=range(env[,1])))
+                        yscale=range(env[,"height"])))
   simple.frame()
-  grid.lines(env[,2], env[,1], default.units="native",
+  grid.lines(env[,"canopy_openness"], env[,"height"], default.units="native",
              gp=gpar(lwd=3, lineend="butt"))
   grid.text("Height", x=unit(-1, "lines"), rot=90)
   grid.text("Light", y=unit(-1, "lines"))
   popViewport(1)
 }
 
-fig.blackbox <- function(draft=FALSE, embed=FALSE) {
-  tree <- get.pic("pics/tree.eps")
+fig.blackbox <- function(tree, res, draft=FALSE, embed=FALSE) {
 
   set.seed(1)
   xy <- pack.circles(1000, r0=0.03, w=1.2, max.size=.15)
 
-  res <- readRDS("output/tree.output.rds")
-  plant <- make.reference()
+  plant <- make_reference_plant() #make.reference()
   assign("p.eta", 5, environment(plant$leaf.pdf))
-  env <- res$light.env[[92]]
-  h.max <- max(env[,1])
+  i <-  length(res$light_env)
+  env <- res$light_env[[i]]
+  h.max <- max(env[,"height"])
   height <- seq(0, h.max, length=201)
-  light.env <- splinefun(env[,1], env[,2])
+  light.env <- splinefun(env[,"height"], env[,"canopy_openness"])
   assim <- cleanup(plant$leaf.pdf(height, h.max))
 
   r <- 2/3
@@ -334,7 +339,7 @@ fig.blackbox <- function(draft=FALSE, embed=FALSE) {
   pushViewport(viewport(width=unit(1, "snpc"), height=unit(1, "snpc"),
                         xscale=c(-1, 1), yscale=c(-1, 1)))
   grid.rect(gp=gpar(fill="black"))
-  
+
   x0 <- unit(0.03, "npc")
   y0 <- unit(0.5, "npc")
   w0 <- unit(0.33, "npc")
@@ -368,9 +373,9 @@ fig.blackbox <- function(draft=FALSE, embed=FALSE) {
                         unit(1, "npc") - mar * 1.5,
                         just=c("left", "bottom"),
                         xscale=c(0, 1),
-                        yscale=range(env[,1])))
+                        yscale=range(env[,"height"])))
   simple.frame()
-  grid.lines(env[,2], env[,1], default.units="native",
+  grid.lines(env[,"canopy_openness"], env[,"height"], default.units="native",
              gp=gpar(lwd=3, lineend="butt"))
   if (!embed) {
     grid.text("Height", x=unit(-0.66, "lines"), rot=90)
@@ -427,7 +432,7 @@ fig.blackbox <- function(draft=FALSE, embed=FALSE) {
   popViewport(1)
 }
 
-fig.competition <- function(plt) {
+fig.competition <- function(option) {
   xx <- seq(-4, 4, length=101)
   yy <- dnorm(xx)
   yy <- yy/max(yy)
@@ -435,7 +440,7 @@ fig.competition <- function(plt) {
   par(mar=c(2.5, 2.5, .5, .5))
 
   plot(xx, yy, type="l", lwd=lwd, xlab="", ylab="", axes=FALSE,
-       col=if (plt == 1) "black" else "grey")
+       col=if (option == 1) "black" else "grey")
   box(bty="l")
   abline(v=0, lty=2)
   axis(1, 0, label=TRUE, tick=FALSE, mgp=c(0, 0, 0.5))
@@ -443,57 +448,28 @@ fig.competition <- function(plt) {
   mtext("Trait difference", 1, 1.5)
   mtext("Strength of competition", 2, 1.5)
 
-  if (plt == 2) {
+  if (option == 2) {
     yy2 <- dexp(xx, 2)
     yy2 <- yy2/max(yy2)
     yy2[xx < 0] <- yy[xx < 0]
     lines(yy2 ~ xx, col="black", lwd=lwd)
-  } else if (plt == 3) {
+  } else if (option == 3) {
     yy3 <- dnorm(xx + 1)
     yy3 <- yy3/max(yy3)
     lines(yy3 ~ xx, col="black", lwd=lwd)
   }
 }
 
-fig.growth <- function(plt) {
-  res <- readRDS("output/tree.output.rds")
-  par(mar=c(2, 2, .5, .5))
-  t <- res$time
-  y <- if (plt <= 2) res$values$height else res$values$seeds
-  z <- res$values$log.density
-  z <- exp((z - max(z, na.rm=TRUE))/20) # 20 is just scaling fudge 
-  i1 <- seq_len(length(t) - 1)
-  i2 <- i1 + 1
-  col <- if (plt == 1) "black" else make.transparent("black", z[i1,])
-  plot(NA, xlim=range(t), ylim=range(y, na.rm=TRUE),
-       type="n", axes=FALSE, xlab="", ylab="")
-  segments(t[i1], y[i1,], t[i2], y[i2,], col=col)
-  box(bty="l")
-  mtext("Time", 1, 0.5)
-  mtext(if (plt == 3) "Seeds produced" else "Plant height", 2, 0.5)
-}
 
-trace.ps <- function(file, retrace=FALSE) {
+get.pic <- function(file) {
   base <- tools::file_path_sans_ext(file)
-  file.xml <- sprintf("%s.xml", file)
-  file.tmp <- sprintf("capture%s", basename(file))
-  if (!file.exists(file.xml) || retrace) {
-    PostScriptTrace(file, file.xml)
-    file.remove(file.tmp)
-  }
-}
-
-get.pic <- function(file, retrace=FALSE, reload=FALSE) {
-  file.xml <- sprintf("%s.xml", file)
-  file.rds <- sprintf("%s.rds", file)
-  if (!file.exists(file.rds) || reload) {
-    trace.ps(file, retrace)
-    pic <- readPicture(file.xml)
-    saveRDS(pic, file.rds)
-  } else {
-    pic <- readRDS(file.rds)
-  }
-  pic
+  file.xml <- sprintf("%s.xml", base)
+  on.exit({
+    file.remove(file.xml)
+    file.remove(sprintf("capture%s", basename(file)))
+  })
+  PostScriptTrace(file, file.xml)
+  readPicture(file.xml)
 }
 
 colour.picture <- function(picture, col) {
@@ -528,26 +504,6 @@ reset <- function() {
     grid.newpage()
     popViewport(0)
   }
-}
-
-to.dev <- function(expr, dev, filename, ..., verbose=TRUE) {
-  if (verbose)
-    cat(sprintf("Creating %s\n", filename))
-  dev(filename, ...)
-  on.exit(dev.off())
-  eval.parent(substitute(expr))
-  invisible()
-}
-
-to.pdf <- function(expr, filename, ..., cairo=FALSE, pointsize=12) {
-  dev <- if (cairo) CairoPDF else pdf
-  to.dev(expr, dev, filename, ..., pointsize=pointsize)
-}
-
-to.cairo_pdf <- function(expr, filename, ..., pointsize=12,
-                         family="Hoefler Text", bg="transparent") {
-  to.dev(expr, cairo_pdf, filename, ..., pointsize=pointsize,
-         family=family, bg=bg)
 }
 
 cleanup <- function(x) {
