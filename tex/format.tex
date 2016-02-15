@@ -1,0 +1,59 @@
+% Turn off the ugly navigation symbols.
+\setbeamertemplate{navigation symbols}{}
+
+% Margins and whatnot.
+\setbeamersize{text margin left=1em,text margin right=1em}
+
+% Hoefler Text as the main text font; need to make sure it's happy
+% using serif though...
+\usepackage{fontspec}
+\usefonttheme{serif}
+\defaultfontfeatures{Mapping=tex-text} % enable -- / --- / `` / ''
+\setmainfont{Hoefler Text}
+\setsansfont[BoldFont=Oswald Bold,ItalicFont=Oswald Light]{Oswald}
+\newcommand{\amp}{{\fontspec[Alternate=1]{Hoefler Text}\&}}
+\newcommand{\QQ}{{\fontspec[Alternate=2]{Hoefler Text}Q}}
+
+\usepackage{tabularx}
+\usepackage{array}
+
+\definecolor{verydarkgrey}{HTML}{001112}
+\definecolor{fdarkblue}{HTML}{232747}
+\definecolor{lightgrey}{HTML}{eeeeee}
+\definecolor{grey}{rgb}{0.5, 0.5, 0.5}
+\definecolor{darkgreen}{rgb}{0, 0.4, 0} % same as "darkgreen" in R
+
+\setbeamerfont{frametitle}{size=\large}
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{titleline}{bg=black}
+\setbeamercolor{title}{fg=fdarkblue}
+\setbeamercolor*{date in head/foot}{fg=verydarkgrey}
+\setbeamercolor{item}{fg=fdarkblue}
+\setbeamerfont{item}{series=\bfseries}
+% Never used, but this is nice.
+\setbeamertemplate{itemize subitem}{\normalsize --}
+
+% \useoutertheme{new}
+
+\makeatletter  %Sets category code: http://tex.stackexchange.com/questions/8351/what-do-makeatletter-and-makeatother-do
+\usepackage{dashrule}
+\defbeamertemplate*{frametitle}{mine}[1][left]
+{
+  % Increase width of title box
+  \@tempdima=\textwidth%
+  \advance\@tempdima by\beamer@leftmargin%
+  \advance\@tempdima by\beamer@rightmargin%
+  %
+  \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
+    \usebeamerfont{frametitle}%
+    \vbox{}\vskip-1ex\vspace{.5ex}
+    \strut\hspace{1ex}\insertframetitle\strut\par%
+    \vskip-1.5ex%
+    \hspace{\fill}\hdashrule{\textwidth}{.075ex}{.075ex .2ex}\hspace{\fill}
+    \par\nointerlineskip \vspace{\baselineskip}
+  \end{beamercolorbox}%
+  \nointerlineskip%
+  \vspace{-1ex}
+}
+
+\setbeamercolor*{date in head/foot}{bg=black,fg=white}

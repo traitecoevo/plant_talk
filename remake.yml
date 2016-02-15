@@ -1,6 +1,7 @@
 packages:
   - plant
   - grImport
+  - callr
 
 sources:
   - R
@@ -17,31 +18,36 @@ targets:
   all:
     quiet: true
     depends:
+      - slides.pdf
+
+  slides.pdf:
+    command: xelatex_build_clean("slides.tex")
+    depends:
       - figures
 
   figures:
     depends:
-      - output/figures/fitness-1.pdf
-      - output/figures/fitness-2.pdf
-      - output/figures/fitness-3.pdf
-      - output/figures/fitness-4.pdf
-      - output/figures/lifecycle-1.pdf
-      - output/figures/lifecycle-2.pdf
-      - output/figures/plantmodel-1.pdf
-      - output/figures/plantmodel-2.pdf
-      - output/figures/plantmodel-3.pdf
-      - output/figures/plantmodel-4.pdf
-      - output/figures/plantmodel-5.pdf
-      - output/figures/plantmodel-6.pdf
-      - output/figures/plantmodel-7.pdf
-      - output/figures/lightenv-1.pdf
-      - output/figures/lightenv-2.pdf
-      - output/figures/lightenv-3.pdf
-      - output/figures/blackbox.pdf
-      - output/figures/blackbox-small.pdf
-      - output/figures/competition-1.pdf
-      - output/figures/competition-2.pdf
-      - output/figures/competition-3.pdf
+      - figures/fitness-1.pdf
+      - figures/fitness-2.pdf
+      - figures/fitness-3.pdf
+      - figures/fitness-4.pdf
+      - figures/lifecycle-1.pdf
+      - figures/lifecycle-2.pdf
+      - figures/plantmodel-1.pdf
+      - figures/plantmodel-2.pdf
+      - figures/plantmodel-3.pdf
+      - figures/plantmodel-4.pdf
+      - figures/plantmodel-5.pdf
+      - figures/plantmodel-6.pdf
+      - figures/plantmodel-7.pdf
+      - figures/lightenv-1.pdf
+      - figures/lightenv-2.pdf
+      - figures/lightenv-3.pdf
+      - figures/blackbox.pdf
+      - figures/blackbox-small.pdf
+      - figures/competition-1.pdf
+      - figures/competition-2.pdf
+      - figures/competition-3.pdf
 
   # data objects
   res:
@@ -54,74 +60,74 @@ targets:
     command: get.pic("pics/tree.eps")
 
   # figures
-  output/figures/fitness-1.pdf:
+  figures/fitness-1.pdf:
     command: fig.fitness(1, seed, tree, res)
     plot: 6by4
 
-  output/figures/fitness-2.pdf:
+  figures/fitness-2.pdf:
     command: fig.fitness(2, seed, tree, res)
     plot: 6by4
 
-  output/figures/fitness-3.pdf:
+  figures/fitness-3.pdf:
     command: fig.fitness(3, seed, tree, res)
     plot: 6by4
 
-  output/figures/fitness-4.pdf:
+  figures/fitness-4.pdf:
     command: fig.fitness(4, seed, tree, res)
     plot: 6by4
 
-  output/figures/lifecycle-1.pdf:
+  figures/lifecycle-1.pdf:
     command: fig.lifecycle(1, seed, tree)
     plot: 4by4
-  output/figures/lifecycle-2.pdf:
+  figures/lifecycle-2.pdf:
     command: fig.lifecycle(2, seed, tree)
     plot: 4by4
 
-  output/figures/plantmodel-1.pdf:
+  figures/plantmodel-1.pdf:
     command: fig.plantmodel(1, tree, res)
     plot: 6by4
-  output/figures/plantmodel-2.pdf:
+  figures/plantmodel-2.pdf:
     command: fig.plantmodel(2, tree, res)
     plot: 6by4
-  output/figures/plantmodel-3.pdf:
+  figures/plantmodel-3.pdf:
     command: fig.plantmodel(3, tree, res)
     plot: 6by4
-  output/figures/plantmodel-4.pdf:
+  figures/plantmodel-4.pdf:
     command: fig.plantmodel(4, tree, res)
     plot: 6by4
-  output/figures/plantmodel-5.pdf:
+  figures/plantmodel-5.pdf:
     command: fig.plantmodel(5, tree, res)
     plot: 6by4
-  output/figures/plantmodel-6.pdf:
+  figures/plantmodel-6.pdf:
     command: fig.plantmodel(6, tree, res)
     plot: 6by4
-  output/figures/plantmodel-7.pdf:
+  figures/plantmodel-7.pdf:
     command: fig.plantmodel(7, tree, res)
     plot: 6by4
 
-  output/figures/lightenv-1.pdf:
+  figures/lightenv-1.pdf:
     command: fig.lightenv(1, tree, res)
     plot: 6by4
-  output/figures/lightenv-2.pdf:
+  figures/lightenv-2.pdf:
     command: fig.lightenv(2, tree, res)
     plot: 6by4
-  output/figures/lightenv-3.pdf:
+  figures/lightenv-3.pdf:
     command: fig.lightenv(3, tree, res)
     plot: 6by4
 
-  output/figures/blackbox.pdf:
+  figures/blackbox.pdf:
     command: fig.blackbox(tree, res)
     plot: 4by4
-  output/figures/blackbox-small.pdf:
+  figures/blackbox-small.pdf:
     command: fig.blackbox(tree, res, embed=TRUE)
     plot: 4by4
 
-  output/figures/competition-1.pdf:
+  figures/competition-1.pdf:
     command: fig.competition(1)
     plot: 6by4
-  output/figures/competition-2.pdf:
+  figures/competition-2.pdf:
     command: fig.competition(2)
     plot: 6by4
-  output/figures/competition-3.pdf:
+  figures/competition-3.pdf:
     command: fig.competition(3)
     plot: 6by4

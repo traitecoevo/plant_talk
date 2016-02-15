@@ -1,0 +1,92 @@
+
+
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows,positioning, decorations, decorations.text}
+
+% Define new environment for overlaying transparent text box, eg.g. for title
+\usepackage[framemethod=tikz]{mdframed}
+\newmdenv[tikzsetting={draw=black,fill=white,fill opacity=0.7, line width=4pt, rounded corners, inner sep=10pt, inner ysep=10pt},backgroundcolor=none,leftmargin=0,rightmargin=0,innertopmargin=4pt,skipbelow=\baselineskip,%
+skipabove=\baselineskip]{TitleBox}
+
+% macro for small text at lower right of screen, e.g. links
+\usepackage[overlay,absolute]{textpos}
+\newcommand\FrameText[1]{
+  \begin{textblock*}{\paperwidth}(0pt,.98\textheight)
+    \raggedleft \small  #1\hspace{.5em}
+  \end{textblock*}}
+
+% some formatting options for green blue slide
+\tikzstyle{greenblue_bodytext} = [text width=.45\paperwidth,text badly ragged,  rounded corners, inner sep=10pt, inner ysep=10pt, fill=white, line width=2pt]
+
+% Defines a command to make two new slides with different backgorunds,
+% place two text boxes on page n top left and bottom right,
+
+\newcommand{\greenblueslide}[6]{%
+\begin{frame}[empty]
+   \begin{tikzpicture}[remember picture,overlay]
+     \node at (current page.center) {
+       \includegraphics<1>[width=\paperwidth]{#1}
+       \includegraphics<2>[width=\paperwidth]{#4}
+     };
+     \node[draw,anchor=north west, greenblue_bodytext, draw= green] at
+       ($(current page.north west) + (.05\paperwidth, -.1\paperheight)$)
+       {{\bf Plants: }\\ {\small #2}};
+
+     \only<2>{
+     \node[draw,anchor=south east, greenblue_bodytext, draw=blue] at
+       ($(current page.south east) - (.05\paperwidth, -.1\paperheight)$)
+       {{\bf Marine: }\\ {\small #5}};
+       }
+   \end{tikzpicture}
+   \only<1>{ \FrameText{ {\color{grey} #3}}}
+   \only<2>{ \FrameText{ {\color{grey} #6}}}
+\end{frame}
+}
+
+\newcommand{\traitsummary}[9]{
+
+\tikzstyle{boxStyle1}=[anchor = center, rectangle, rounded corners, thick, inner sep=4pt, inner ysep=4pt, align = center, fill =white, text width = 3cm]
+\tikzstyle{boxStyle2}=[boxStyle1, text width = 8cm]
+
+% define styles - lines
+\tikzstyle{lineStyle1}=[shorten <=2pt, shorten >=2pt]
+
+  % anchor
+  \node[] at ($(current page.center) + (0, 3cm)$) (middle){};
+  % top row
+   \node[boxStyle1, left = 3cm of middle.center, text = darkgreen] (low) { #1  };
+   \node[boxStyle1, right = 3cm of middle.center, text = darkgreen] (high) { #3 }
+      edge [<->, line width = 5pt, lineStyle1, draw=darkgreen!50]                  (low);
+  \node[boxStyle1 , draw = black, text width = 3cm] at (middle) {\large #2};
+  % second row
+  \node[boxStyle2, below = 0.8cm of middle.center, text = black!50] (middle2) {\small (direct physiological trade-off)};
+   \node[boxStyle1, left = 3cm of middle2.center] (low2) {\small #4};
+   \node[boxStyle1, right = 3cm of middle2.center] (high2) {\small #5};
+  % 3rd row
+  \node[boxStyle2, below =0.8cm of middle2.center, text = black!50] (middle3) {\small (functional outcome)};
+   \node[boxStyle1, left = 3cm of middle3.center, text = black] (low3) {\small #6};
+   \node[boxStyle1, right = 3cm of middle3.center, text = black] (high3) {\small #7};
+ % 4th row
+  \node[boxStyle2, below =0.8cm of middle3.center, text = black!50] (middle4) {\small (demographic outcome)};
+   \node[boxStyle1, left = 3cm of middle4.center, text = black] (low4) {\small #8};
+   \node[boxStyle1, right = 3cm of middle4.center, text = black] (high4) {\small #9};
+
+}
+
+
+% From Rich - macro for???
+\makeatother   % Sets category code: http://tex.stackexchange.com/questions/8351/what-do-makeatletter-and-makeatother-do
+\usepackage{relsize}
+\newenvironment{tframe}{
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[at=(current page.center)] {
+        \includegraphics[width=\paperwidth]{pics/purple-gradient-background}
+      };
+    \end{tikzpicture}
+    \color{white}
+    \sf\relsize{3}}
+    {\end{frame}}

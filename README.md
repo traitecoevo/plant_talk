@@ -1,12 +1,10 @@
-# The challenge of combining 176 x #otherpeoplesdata to create the Biomass And Allometry Database (BAAD)
+# Introduction to the `plant` package in R
 
-This code repository contains code needed to reproduce the slides of a talk given at the Ecological Society of Australia conference, in Adelaide on Wednesday, December 2, 2015:
+This code repository contains code needed to reproduce the slides of a talk given on 1st March 2016 in a webinar organised by the BES, to coincide with the release of our paper, appearing as part of the BES special issue [*"Demography beyond the population"*](http://onlinelibrary.wiley.com/subject/code/000046/homepage/cross_journal_special_feature.htm):
 
-Falster DS, FitzJohn RG, Duursma RA & Darneche D "The challenge of combining 176 x #otherpeoplesdata to create the Biomass And Allometry Database (BAAD)". doi: [10.6084/m9.figshare.1619733](http://dx.doi.org/10.6084/m9.figshare.1619733)
+Falster D, FitzJohn R, Brännström Å, Dieckmann U, Westoby M (2016) **plant: {A} package for modelling forest trait ecology and evolution**. *Methods in Ecology and Evolution* XX: XXX. [10.1111/2041-210X.12525](http://doi.org/10.1111/2041-210X.12525)
 
-**Abstract**: Despite the hype around "big data", a more immediate problem facing many scientific analyses is that large-scale databases must be assembled from a collection of small independent and heterogeneous fragments -- the outputs of many and isolated scientific studies conducted around the globe. Together with 92 other co-authors, we recently published the Biomass And Allometry Database (BAAD) as a data paper in the journal Ecology, combining data from 176 different scientific studies into a single unified database. BAAD is unique in that the workflow -- from raw fragments to homogenised database -- is entirely open and reproducible. in this talk I introduce BAAD and illustrate solutions for some of the challenges of working with lots and lots of #otherpeople's data.
-
-**Slides**: A copy of the compiled presentation is available at [10.6084/m9.figshare.1619733](http://dx.doi.org/10.6084/m9.figshare.1619733).
+**Slides**: A copy of the compiled presentation is available at [xxx](xxx).
 
 # Rebuilding
 
@@ -43,8 +41,3 @@ And then the slides:
 ```r
 remake::make()
 ```
-
-
-# Credits
-
-The outline for this talk and some of content was forked from [Rich FitzJohn's talk on reproducibility](https://github.com/richfitz/reproducibility-2014/releases/download/v1.0/slides.pdf), which uses design from this [great talk](http://bost.ocks.org/mike/d3/workshop/#0).
