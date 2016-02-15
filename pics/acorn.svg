@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2444"
+   sodipodi:version="0.32"
+   inkscape:version="0.46+pre4"
+   sodipodi:docname="acorn.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs2446">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective2452" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="-23.571429"
+     inkscape:cy="520"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="975"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4" />
+  <metadata
+     id="metadata2449">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="" />
+        <dc:title>Acorn</dc:title>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>Acorn fruit nut plant food</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#02954b;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       d="M 169.54668,456.85541 C 170.11594,477.61447 177.68422,495.0536 196.43529,507.18958 C 312.45084,542.21888 439.3979,543.21394 579.51602,503.17268 C 601.6328,495.80624 604.6124,469.32549 603.6174,445.87042 C 586.06829,350.56635 536.65536,285.80481 430.64494,262.89671 C 416.57536,260.5576 414.64225,252.09849 415.64305,231.66329 C 440.44225,156.93406 486.66034,113.07626 554.34894,100.00748 C 568.39523,95.300161 565.40604,82.561418 557.3821,73.856669 L 497.04669,45.738395 C 424.01648,99.67168 387.0969,158.71525 370.39149,220.67831 C 368.38985,240.77019 363.30341,248.85765 346.20813,253.87918 C 273.04412,266.08678 216.95011,311.04379 181.35144,395.61824 C 173.98992,417.6619 169.04441,438.5386 169.54668,456.85541 z M 199.46847,524.32287 C 204.16996,613.15075 197.75289,714.07748 213.48661,790.83164 C 223.9602,871.27481 271.11118,919.86997 343.25696,946.67082 C 359.00808,951.66904 374.37408,956.00604 387.4428,973.80535 C 413.58029,943.29804 475.96868,938.92697 514.17998,891.33601 C 577.61516,833.39945 569.19004,655.74345 572.46596,524.32287 C 428.95416,556.66886 308.0915,550.96657 199.46847,524.32287 z"
+       id="path22" />
+  </g>
+</svg>
