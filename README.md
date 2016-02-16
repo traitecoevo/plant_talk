@@ -41,3 +41,20 @@ And then the slides:
 ```r
 remake::make()
 ```
+
+## Converting to a pptx presentation
+
+OSX users can convert the compiled pdf to a pptx slide in terminal as follows.
+
+First convert the compiled pdf into images using ImageMagick’s `convert` function
+
+```
+mkdir tmp
+convert -density 600x600 -resize 2048x1536 -quality 100 slides.pdf tmp/slide.jpg
+```
+
+Then use the included [automator workflow](http://automator.us/leopard/index.html) to make a pptx slideshow from the images.
+
+```
+ls tmp/slide-*.jpg | sort -k2 -t- -n | /usr/bin/automator -i - scripts/make_ppt.wflow
+```
