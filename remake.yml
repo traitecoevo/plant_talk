@@ -24,30 +24,42 @@ targets:
     command: xelatex_build_clean("slides.tex")
     depends:
       - figures
+      - snippets
 
   figures:
     depends:
-      - figures/fitness-1.pdf
-      - figures/fitness-2.pdf
+      - downloads/BCI.jpg
       - figures/fitness-3.pdf
       - figures/fitness-4.pdf
       - figures/lifecycle-1.pdf
       - figures/lifecycle-2.pdf
       - figures/plantmodel-1.pdf
-      - figures/plantmodel-2.pdf
-      - figures/plantmodel-3.pdf
-      - figures/plantmodel-4.pdf
-      - figures/plantmodel-5.pdf
-      - figures/plantmodel-6.pdf
       - figures/plantmodel-7.pdf
       - figures/lightenv-1.pdf
       - figures/lightenv-2.pdf
       - figures/lightenv-3.pdf
       - figures/blackbox.pdf
       - figures/blackbox-small.pdf
-      - figures/competition-1.pdf
-      - figures/competition-2.pdf
-      - figures/competition-3.pdf
+      - figures/patch-2.pdf
+      - figures/patch-3.pdf
+      - figures/patch-4.pdf
+      - figures/paper-f5.pdf
+
+  # downloads
+  downloads/BCI.jpg:
+    download: http://farm3.staticflickr.com/2834/8897796344_b96c5caea5_b_d.jpg
+
+  # Code snippets
+  snippets:
+    depends:
+      - snippets/plant_package.pdf
+      - snippets/plant_install.pdf
+
+  snippets/plant_package.pdf:
+    command: xelatex_build_clean("snippets/plant_package.tex")
+
+  snippets/plant_install.pdf:
+    command: xelatex_build_clean("snippets/plant_install.tex")
 
   # data objects
   res:
@@ -59,15 +71,10 @@ targets:
   tree:
     command: get.pic("pics/tree.eps")
 
+  fitness_landscape_data:
+    command: make_fitness_data()
+
   # figures
-  figures/fitness-1.pdf:
-    command: fig.fitness(1, seed, tree, res)
-    plot: 6by4
-
-  figures/fitness-2.pdf:
-    command: fig.fitness(2, seed, tree, res)
-    plot: 6by4
-
   figures/fitness-3.pdf:
     command: fig.fitness(3, seed, tree, res)
     plot: 6by4
@@ -86,21 +93,6 @@ targets:
   figures/plantmodel-1.pdf:
     command: fig.plantmodel(1, tree, res)
     plot: 6by4
-  figures/plantmodel-2.pdf:
-    command: fig.plantmodel(2, tree, res)
-    plot: 6by4
-  figures/plantmodel-3.pdf:
-    command: fig.plantmodel(3, tree, res)
-    plot: 6by4
-  figures/plantmodel-4.pdf:
-    command: fig.plantmodel(4, tree, res)
-    plot: 6by4
-  figures/plantmodel-5.pdf:
-    command: fig.plantmodel(5, tree, res)
-    plot: 6by4
-  figures/plantmodel-6.pdf:
-    command: fig.plantmodel(6, tree, res)
-    plot: 6by4
   figures/plantmodel-7.pdf:
     command: fig.plantmodel(7, tree, res)
     plot: 6by4
@@ -115,6 +107,18 @@ targets:
     command: fig.lightenv(3, tree, res)
     plot: 6by4
 
+  figures/patch-2.pdf:
+    command: fig.patch(2, tree)
+    plot: 4by4
+
+  figures/patch-3.pdf:
+    command: fig.patch(3, tree)
+    plot: 4by4
+
+  figures/patch-4.pdf:
+    command: fig.patch(4, tree)
+    plot: 4by4
+
   figures/blackbox.pdf:
     command: fig.blackbox(tree, res)
     plot: 4by4
@@ -122,12 +126,6 @@ targets:
     command: fig.blackbox(tree, res, embed=TRUE)
     plot: 4by4
 
-  figures/competition-1.pdf:
-    command: fig.competition(1)
-    plot: 6by4
-  figures/competition-2.pdf:
-    command: fig.competition(2)
-    plot: 6by4
-  figures/competition-3.pdf:
-    command: fig.competition(3)
-    plot: 6by4
+  figures/paper-f5.pdf:
+    command: figure_fitness_landscape(fitness_landscape_data)
+    plot: true

@@ -7,7 +7,14 @@
 ## avoiding arbitrary rectangles, using the algorithm here:
 ##   http://stackoverflow.com/a/1879223/1798863
 ## However, this is optional.
-pack.circles <- function(iterations, w=1, h=1, 
+
+## h = height
+## w = width
+## r0 = min radius
+## g0 = vector of growth (?)
+## min.sep = minimum separation
+
+pack.circles <- function(iterations, w=1, h=1,
                          rects=NULL, nodes=NULL,
                          r0=NULL, g0=NULL, min.sep=NULL, max.size=NULL) {
   wh <- min(w, h)
@@ -19,7 +26,7 @@ pack.circles <- function(iterations, w=1, h=1,
     min.sep <- min(g0)
   if (is.null(max.size))
     max.size <- .1 * wh
-  
+
   if (length(g0) != 2)
     stop("Expected g0 of length 2")
   random.circle <- make.random.circle(w, h, r0, g0)

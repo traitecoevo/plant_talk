@@ -1,12 +1,17 @@
 \documentclass[mathserif,11pt]{beamer}
 
-\input{tex/format}
-\input{tex/macros}
-
 \usepackage{pdfpages}
 \usepackage{tex/fontawesome} % nice glyphs
 
-\title{Introduction to the plant model}
+\input{tex/format}
+\input{tex/macros}
+\input{tex/style}
+
+\newcommand{\hrefp}[2]{\href{#1://#2}{#2}}
+\newcommand{\twitterhandle}[1]{\href{https://twitter.com/#1}{#1}}
+\newcommand{\plant}{\texttt{plant}}
+
+\title{Introduction to the {\plant} package for R\\(insert custom title slide)}
 \date{}
 \author{}
 
@@ -26,6 +31,143 @@
  \end{TitleBox}
  \end{frame}
 
+% NOTES
+\begin{frame}[plain]
+
+\begin{tikzpicture}[remember picture, overlay]%
+  \node[anchor=north, align=center] at
+    ($(current page.north) + (0cm, 0.2cm)$) {
+    \includegraphics[width=1.0\paperwidth]{pics/MEE}};
+
+  \node [anchor=north, align=left, text width =10.5cm] at
+    ($(current page.center) + (0, 0.25\paperheight)$) {%
+
+  {\footnotesize
+  {\normalsize \FA \faBook} \,\,  Falster, FitzJohn, Brännström, Dieckmann, Westoby (2016) {\bf plant: A package for modelling forest trait ecology and evolution}. \emph{Methods in Ecology and Evolution} XX: XXX. doi: \href{http://doi.org/10.1111/2041-210X.12525}{10.1111/2041-210X.12525}\\
+
+    \vspace{1.5em}
+  {\normalsize \FA \faStar} ``Application note'', about new package for R $\rightarrow$ {\plant}
+
+  \vspace{1.5em}
+  {\normalsize \FA \faGithub} \,\,  \hrefp{https}{github.com/traitecoevo/plant} }
+  };
+
+  \node[anchor=north, align=center] at
+    ($(current page.center) + (0, -0.15\paperheight)$) {
+    \includegraphics[width=0.8\paperwidth]{snippets/plant_install.pdf}
+    };
+\end{tikzpicture}
+
+\end{frame}
+
+% NOTES
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \node[anchor=north, align=center] at
+    ($(current page.north)+ (0cm, 0.2cm)$) {
+    \includegraphics[width=1.1\paperwidth]{downloads/BCI.jpg}};
+
+  \node[anchor = west, text width=12cm, align=left] at ($(current page.west) + (0.25cm, -4cm)$) {
+  {\color{white} \Large A simulation model for exploring demographic phenomena}
+  };
+\end{tikzpicture}
+\end{frame}
+
+% NOTES
+\begin{frame}{Individual based model $\rightarrow$ key unit is individual plant}
+  \begin{center}
+   \includegraphics<1>[height=.8\textheight]{figures/plantmodel-1}
+  \end{center}
+\end{frame}
+
+% NOTES
+% 1. *A plant* has a size (height, allometric scaling for
+%    other sizes), probability of dying and a rate of seed production.
+% 2. All these rates are functions of *total carbon assimilation*,
+%    which is a function of the plant's leaf area distribution (canopy
+%    shape) and the light environment.
+% 3. The carbon fixed is then assigned to maintenance, growth and
+%    reproduction.  Your probability of mortality depends inversely on
+%    the amount of photosynthesis you do.
+% 4. (The key ingredient is how much carbon you fix; we consider light
+%    primarily as the limiting resource)
+
+\begin{frame}{Individual based model $\rightarrow$ rules about plant function}
+  \begin{center}
+   \includegraphics<1>[height=.8\textheight]{figures/plantmodel-7}
+  \end{center}
+\end{frame}
+
+
+% NOTES:
+% The light environment is derived by summing over all the leaf
+% area distributions of all individuals -- it also varies over time
+% and emerges from the model.  It provides a strong feedback between
+% all individuals in the model.
+%
+% [Plants grow in the context of a forest; how much light you get
+% depends on who grows around you and how big they are; but that
+% depends on who grows around those plants, and so on.  This is the
+% key feedback]
+
+\begin{frame}{Competition within a patch --  due to shading}
+  \begin{center}
+    \includegraphics<1>[height=.8\textheight]{figures/lightenv-1}
+    \includegraphics<2>[height=.8\textheight]{figures/lightenv-2}
+    \includegraphics<3>[height=.8\textheight]{figures/lightenv-3}
+  \end{center}
+\end{frame}
+
+% NOTES:
+\begin{frame}{Individual patch scales to metapopulation}
+  \begin{center}
+   \includegraphics<1>[height=.8\textheight]{figures/patch-2}
+   \includegraphics<2>[height=.8\textheight]{figures/patch-3}
+  \end{center}
+\end{frame}
+
+% NOTES:
+\begin{frame}{Multiple species possible via traits $\rightarrow$ a metacommunity}
+  \begin{center}
+   \includegraphics<1>[height=.8\textheight]{figures/patch-4}
+  \end{center}
+\end{frame}
+
+% NOTES:
+\begin{frame}{Key methodological advances making {\plant} possible}
+
+  \begin{tikzpicture}[remember picture, overlay]%
+    \node [anchor=north, align=left] at
+    ($(current page.center) + (0, 3cm)$) {%
+  {\small
+
+  \begin{tabular}{ll}
+  1970-1990 & Stochastic gap models \\
+            & {\footnotesize \; \color{grey} $\rightarrow$ e.g. \href{http://doi.org/10.2307/2258570}{Botkin 1972}, \href{https://books.google.com.au/books/about/A_theory_of_forest_dynamics.html?id=q5vwAAAAMAAJ&redir_esc=y}{Shugart 1984}} \\[2ex]
+  1990-2000 & Approximation with partial differential equations (PDEs) \\
+            & {\footnotesize \; \color{grey} $\rightarrow$  \href{https://books.google.com.au/books?id=MXz1CAAAQBAJ}{Metz \& Diekmann 1986}, \href{http://doi.org/10.2307/2261230}{Kohyama 1993}, \href{http://doi.org/10.1890/0012-9615(2001)071[0557:AMFSVD]2.0.CO;2}{Moorcroft \emph{et al.} 2001} }  \\[2ex]
+  2000-2015 & Generic plant physiology, function driven by traits \\
+            & {\footnotesize \; \color{grey} $\rightarrow$  \href{http://doi.org/10.1890/0012-9615(2001)071[0557:AMFSVD]2.0.CO;2}{Moorcroft \emph{et al.} 2001}, \href{http://doi.org/10.1146/annurev.ecolsys.33.010802.150452}{Westoby \emph{et al.} 2002}, \href{http://doi.org/10.1111/j.1365-2745.2010.01735.x}{Falster \emph{et al.} 2011}} \\[2ex]
+  2010-2015 & Higher resolution numerical methods for solving PDEs \\
+            & {\footnotesize \; \color{grey} $\rightarrow$ \href{http://doi.org/10.1016/j.apnum.2004.01.007}{Angulo \emph{et al.} 2004}, \href{http://doi.org/10.1016/j.camwa.2014.04.009}{2014} }\\[2ex]
+  2010-2015 & New techniques for packaging, testing \& distributing code \\
+            & {\footnotesize \; \color{grey} $\rightarrow$  \href{http://www.rcpp.org/}{Rcpp}, \href{https://github.com/richfitz/RcppR6}{RcppR6}, \href{https://github.com/traitecoevo/plant}{github}, \href{https://travis-ci.org/traitecoevo/plant}{Travis CI}} \\[4ex]
+   & Family of related models\\
+   & {\footnotesize \; \color{grey} $\rightarrow$ e.g. \href{https://github.com/EDmodel/ED2}{ED}, \href{http://formind.org/model/}{FORMIND},  \href{http://iis4.nateko.lu.se/lpj-guess/}{LPJ-GUESS} } \\
+  \end{tabular}
+  }
+};
+\end{tikzpicture}
+\end{frame}
+
+
+\begin{frame}{Speed of C++ with flexibility of R  {\color{b-pink} {\FA \faHeart \faHeart \faHeart}} }
+\begin{tikzpicture}[remember picture, overlay]%
+  \node[anchor=north, align=center] at
+    ($(current page.center) + (0, 0.3\paperheight)$) {
+    \includegraphics[width=.9\paperwidth]{snippets/plant_package}};
+  \end{tikzpicture}
+\end{frame}
 
 % NOTES:
 % 1. Consider species as vectors of traits
@@ -34,11 +176,10 @@
 % 3. Throw in a bunch of seeds, and see how many seeds each seed
 %    produces.  Consider traits to be fixed through this part.  This
 %    is our "ecological black box"
-\begin{frame}{Evolutionary assembly}
+\begin{frame}{Designed to explore ``demography beyond the population''}
   \begin{center}
-    \includegraphics<1>[height=.8\textheight]{figures/fitness-1}
-    \includegraphics<2>[height=.8\textheight]{figures/fitness-2}
-    \includegraphics<3>[height=.8\textheight]{figures/fitness-3}
+    \includegraphics<1>[height=.8\textheight]{figures/fitness-3}
+    \includegraphics<2>[height=.8\textheight]{figures/fitness-4}
   \end{center}
 \end{frame}
 
@@ -56,74 +197,53 @@
 % 6. So most of the ecology will focus on the plant.
 % 7. But this cycle really is all that is in the black box.
 
-\begin{frame}{Where does fitness come from?}
+
+\begin{frame}{Explore trait-based niche differentiation}
   \begin{center}
-    \includegraphics<1>[height=.8\textheight]{figures/lifecycle-1}
-    \includegraphics<2>[height=.8\textheight]{figures/lifecycle-2}
+    \includegraphics<1>[height=.8\textheight]{figures/paper-f5}
   \end{center}
 \end{frame}
 
-% NOTES:
-% 1. *A plant* has a size (height, allometric scaling for
-%    other sizes), probability of dying and a rate of seed production.
-% 2. All these rates are functions of *total carbon assimilation*,
-%    which is a function of the plant's leaf area distribution (canopy
-%    shape) and the light environment.
-% 3. The carbon fixed is then assigned to maintenance, growth and
-%    reproduction.  Your probability of mortality depends inversely on
-%    the amount of photosynthesis you do.
-% 4. (The key ingredient is how much carbon you fix; we consider light
-%    primarily as the limiting resource)
-\begin{frame}{Inside our black box}
-  \begin{center}
-    \includegraphics<1>[height=.8\textheight]{figures/plantmodel-1}
-    \includegraphics<2>[height=.8\textheight]{figures/plantmodel-2}
-    \includegraphics<3>[height=.8\textheight]{figures/plantmodel-3}
-    \includegraphics<4>[height=.8\textheight]{figures/plantmodel-4}
-    \includegraphics<5>[height=.8\textheight]{figures/plantmodel-5}
-    \includegraphics<6>[height=.8\textheight]{figures/plantmodel-6}
-    \includegraphics<7>[height=.8\textheight]{figures/plantmodel-7}
-  \end{center}
-\end{frame}
+\begin{frame}\frametitle{Thanks to collaborators}
 
-% NOTES:
-% The light environment is derived by summing over all the leaf
-% area distributions of all individuals -- it also varies over time
-% and emerges from the model.  It provides a strong feedback between
-% all individuals in the model.
-%
-% [Plants grow in the context of a forest; how much light you get
-% depends on who grows around you and how big they are; but that
-% depends on who grows around those plants, and so on.  This is the
-% key feedback]
-\begin{frame}{Strong feedbacks via the light environment}
-  \begin{center}
-    \includegraphics<1>[height=.8\textheight]{figures/lightenv-1}
-    \includegraphics<2>[height=.8\textheight]{figures/lightenv-2}
-    \includegraphics<3>[height=.8\textheight]{figures/lightenv-3}
-  \end{center}
-\end{frame}
+  \begin{tikzpicture}[remember picture, overlay]%
+    \node [anchor=north, align=left] at
+    ($(current page.center) + (0, .37\paperheight)$) {%
+    {\footnotesize
+      \begin{tabular}{c >{\color{black}}l  c >{\color{black}}l }
+        \raisebox{-.03\paperheight}{%
+          \includegraphics[height=.12\paperheight]{pics/people/FitzJohn}}&
+        Rich FitzJohn  &
+        \raisebox{-.03\paperheight}{%
+          \includegraphics[height=.12\paperheight]{pics/people/Westoby.jpeg}}&
+       Mark Westoby  \\
+       & & & \\
+        \raisebox{-.03\paperheight}{%
+          \includegraphics[height=.12\paperheight]{pics/people/Brannstrom}}&
+        Åke Brännström &
+        \raisebox{-.03\paperheight}{%=
+          \includegraphics[height=.12\paperheight]{pics/people/Dieckmann}}&
+        Ulf Dieckmann\\
+     \end{tabular}
+      }
+  };
+   \node [anchor=north, align=left, text width =10.5cm] at
+    ($(current page.center) + (0, 0\paperheight)$) {%
 
-% \begin{frame}{Growth dynamics}
-%   \begin{center}
-%     \includegraphics<1>[height=.8\textheight]{figures/growth-1}
-%     \includegraphics<2>[height=.8\textheight]{figures/growth-2}
-%     \includegraphics<3>[height=.8\textheight]{figures/growth-3}
-%   \end{center}
-% \end{frame}
+  {\footnotesize
+  {\normalsize \FA \faBook} \,\,  Falster, FitzJohn, Brännström, Dieckmann, Westoby (2016) {\bf plant: A package for modelling forest trait ecology and evolution}. \emph{Methods in Ecology and Evolution} XX: XXX. doi: \href{http://doi.org/10.1111/2041-210X.12525}{10.1111/2041-210X.12525}
 
-\begin{frame}{Strong ecological feedbacks dominate this model}
-  \vspace{-1em}
-  \begin{center}
-    \includegraphics[height=.7\textheight]{figures/blackbox}
-  \end{center}
-\end{frame}
+  \vspace{1em}
+  {\normalsize \FA \faAlignJustify}  \,\,  \href{xxx}{xxx}
 
-\begin{frame}{Evolutionary assembly}
-  \begin{center}
-    \includegraphics<1>[height=.8\textheight]{figures/fitness-4}
-    \includegraphics<2>[height=.8\textheight]{figures/fitness-3}
-  \end{center}
+  \vspace{1em}
+  {\normalsize \FA \faGithub} \,\,  \hrefp{https}{github.com/traitecoevo/plant}, \hrefp{https}{github.com/traitecoevo/plant\_paper}
+
+  \vspace{1em}
+  {\normalsize \FA \faTwitter}  \,\,  \twitterhandle{adaptive\_plant}, \twitterhandle{rgfitzjohn}
+  }
+  };
+  \end{tikzpicture}
 \end{frame}
 
 \end{document}

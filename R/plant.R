@@ -323,7 +323,6 @@ fig.lightenv <- function(option, tree, res) {
 fig.blackbox <- function(tree, res, draft=FALSE, embed=FALSE) {
 
   set.seed(1)
-  xy <- pack.circles(1000, r0=0.03, w=1.2, max.size=.15)
 
   plant <- make_reference_plant() #make.reference()
   assign("p.eta", 5, environment(plant$leaf.pdf))
@@ -340,21 +339,9 @@ fig.blackbox <- function(tree, res, draft=FALSE, embed=FALSE) {
                         xscale=c(-1, 1), yscale=c(-1, 1)))
   grid.rect(gp=gpar(fill="black"))
 
-  x0 <- unit(0.03, "npc")
-  y0 <- unit(0.5, "npc")
-  w0 <- unit(0.33, "npc")
-  pushViewport(viewport(x0, y0, w0, w0, just="left"))
-  grid.rect(gp=gpar(col="white", fill="white"))
-  pushViewport(viewport(xscale=c(0, 1.2)))
-  cols <- sample(c("black", "grey30"), ncol(xy), replace=TRUE)
-  if (draft)
-    grid.circle(unit(xy["x",], "native"), xy["y",], xy["r",])
-  else
-  for (i in seq_len(ncol(xy)))
-    grid.picture(colour.picture(tree, cols[i]),
-                 unit(xy["x",i], "native"), xy["y",i],
-                 just=c("centre", "centre"), height=xy["r",i] * 2)
-  popViewport(2)
+  draw.patch(x0=unit(0.03, "npc"), y0=unit(0.5, "npc"), w0=unit(0.33, "npc"),
+    tree, cols = c("black", "grey30"),
+    iterations=1000, r0=0.03, w=1.2, max.size=.15, draft=FALSE)
 
   dt <- 2*pi / 6
   grid.points(r * cos(dt), r*sin(dt))
@@ -430,6 +417,80 @@ fig.blackbox <- function(tree, res, draft=FALSE, embed=FALSE) {
               just="right", gp=gpar(col="white"))
   }
   popViewport(1)
+}
+
+fig.patch <- function(option, tree, draft=FALSE) {
+
+  set.seed(1)
+
+  if(option < 4) {
+    cols <- c("black")
+  } else {
+    cols <- c("black", "darkorange", "darkblue")
+  }
+
+  pushViewport(viewport(width=unit(1, "snpc"), height=unit(1, "snpc"),
+                        xscale=c(-1, 1), yscale=c(-1, 1)))
+  grid.rect(gp=gpar(fill=make.transparent("black", 0), col = NA))
+
+  rect  <- rect_ladj <- matrix(c(0.5, 0.5, 0.4, 0.4), ncol=1)
+  rect_ladj[1,] <- rect_ladj[1,] - 0.5* rect_ladj[3,]
+  rect_tree <- rect
+  rect_tree[3:4,] <- 0.2
+
+  focal_h <- rect_tree[3,1]
+
+  # draw central patch, leaving space for focal tree
+  if(option > 1) {
+    draw.patch(x0=unit(rect_ladj[1,1], "npc"), y0=unit(rect_ladj[2,1], "npc"), w0=unit(rect_ladj[3,1], "npc"),
+      tree, cols = cols, fill = "white", border = "black",
+      iterations=1000, r0=0.03, w=1.2, max.size=.15, rect=rect_tree)
+   focal_h <- focal_h*0.45
+  }
+
+  # draw focal tree
+  grid.picture(colour.picture(tree, "darkgreen"),
+                 rect_tree[1,1]*0.94, rect_tree[2,1]*1.01,
+                 just=c("centre", "centre"), height=focal_h)
+
+  if(option < 3)
+    return()
+
+  # add more patches around perimeter. Use circle algorithm to generate spacing
+
+  xy <- pack.circles(iterations=200, r0=0.02, w=0.95, max.size=0.1, g0=c(0.0,0.08),
+    rect = rect, min.sep = 0.05)
+
+  for (i in seq_len(ncol(xy))) {
+    # variation in maximum tree size across patches
+    max.s <- runif(1, 0.12, 0.2)
+    # vary average abundance with max tree size
+    iterations <- ceiling(500/max.s*xy["r",i]^2)
+    draw.patch(x0=unit(xy["x",i], "npc"), y0=unit(xy["y",i], "npc"), w0=unit(xy["r",i], "npc"),
+      tree, cols = cols, border = "black",
+      iterations=iterations, r0=0.3*max.s, w=1.1, max.size=max.s, draft=FALSE)
+  }
+  popViewport(1)
+}
+
+draw.patch <- function(x0, y0, w0, tree, cols="black", fill = "white", border = fill, xy=NULL, draft=FALSE, ...) {
+
+  if(is.null(xy)) {
+     xy <- pack.circles(...)
+  }
+
+  pushViewport(viewport(x0, y0, w0, w0, just="left"))
+  grid.rect(gp=gpar(col=border, fill=fill))
+  pushViewport(viewport(xscale=c(0, 1.2)))
+  cols <- sample(cols, ncol(xy), replace=TRUE)
+  if (draft)
+    grid.circle(unit(xy["x",], "native"), xy["y",], xy["r",])
+  else
+  for (i in seq_len(ncol(xy)))
+    grid.picture(colour.picture(tree, cols[i]),
+                 unit(xy["x",i], "native"), xy["y",i],
+                 just=c("centre", "centre"), height=xy["r",i] * 2)
+  popViewport(2)
 }
 
 fig.competition <- function(option) {

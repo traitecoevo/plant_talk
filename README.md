@@ -2,7 +2,7 @@
 
 This code repository contains code needed to reproduce the slides of a talk given on 1st March 2016 in a webinar organised by the BES, to coincide with the release of our paper, appearing as part of the BES special issue [*"Demography beyond the population"*](http://onlinelibrary.wiley.com/subject/code/000046/homepage/cross_journal_special_feature.htm):
 
-Falster D, FitzJohn R, Brännström Å, Dieckmann U, Westoby M (2016) **plant: {A} package for modelling forest trait ecology and evolution**. *Methods in Ecology and Evolution* XX: XXX. [10.1111/2041-210X.12525](http://doi.org/10.1111/2041-210X.12525)
+Falster D, FitzJohn R, Brännström Å, Dieckmann U, Westoby M (2016) **plant: A package for modelling forest trait ecology and evolution**. *Methods in Ecology and Evolution* XX: XXX. [10.1111/2041-210X.12525](http://doi.org/10.1111/2041-210X.12525)
 
 **Slides**: A copy of the compiled presentation is available at [xxx](xxx).
 
