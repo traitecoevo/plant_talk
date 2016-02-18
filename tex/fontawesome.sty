@@ -1,54 +1,52 @@
 % FontAwesome (http://fortawesome.github.com/Font-Awesome/) bindings for (Xe)LaTeX
-% Author: Honza Ustohal <honza@egoistic.biz>
-%
+% Author: Honza Ustohal
+% Check the demo on https://github.com/claudiordgz/FontAwesomeXeTeX/
 % Translation of FontAwesome's private range characters into XeTeX symbols. All icons are camel-cased and prefixed with 'fa', i.e. what was .icon-align-center the CSS version of FontAwesome becomes \faAlignCenter
-% This might be reworked into a full blown package in the near future
 %
 % Prerequisite:
-% XeLaTeX, FontAwesome installed as a system font accessible by XeLaTeX
+% XeLaTeX, because of fontspec FontAwesome installed as a system font accessible by XeLaTeX
 %
 % Usage:
 % 1. Save this into your project folder as fontawesome.sty
 % 2. Put \usepackage{fontawesome} into the preamble
 % 3. Define command for FontAwesome: \newfontfamily{\FA}{FontAwesome Regular}
-% 4. Redefine required characters (optional): \def\twitter{{\FA \faTwitter}}
-% 5. Use: \href{http://twitter.com/swaycz}{\twitter\ swaycz}
+% 4. Use: \href{http://twitter.com/swaycz}{\twitter\ swaycz}
 
 \usepackage{fontspec}  %Needed to access system fonts
 \newfontfamily{\FA}{FontAwesome}  %must be installed in OS Font book
+% \newfontfamily{\FA}[Path = fonts/]{FontAwesome.otf}
+
 
 \def\faGlass{\symbol{"F000}}
 \def\faMusic{\symbol{"F001}}
 \def\faSearch{\symbol{"F002}}
-\def\faEnvelope{\symbol{"F003}}
+\def\faEnvelopeO{\symbol{"F003}}
 \def\faHeart{\symbol{"F004}}
 \def\faStar{\symbol{"F005}}
-\def\faStarEmpty{\symbol{"F006}}
+\def\faStarO{\symbol{"F006}}
 \def\faUser{\symbol{"F007}}
 \def\faFilm{\symbol{"F008}}
 \def\faThLarge{\symbol{"F009}}
 \def\faTh{\symbol{"F00A}}
 \def\faThList{\symbol{"F00B}}
-\def\faOk{\symbol{"F00C}}
-\def\faRemove{\symbol{"F00D}}
-\def\faZoomIn{\symbol{"F00E}}
-
-\def\faZoomOut{\symbol{"F010}}
-\def\faOff{\symbol{"F011}}
+\def\faCheck{\symbol{"F00C}}
+\def\faTimes{\symbol{"F00D}}
+\def\faSearchPlus{\symbol{"F00E}}
+\def\faSearchMinus{\symbol{"F010}}
+\def\faPowerOff{\symbol{"F011}}
 \def\faSignal{\symbol{"F012}}
 \def\faCog{\symbol{"F013}}
-\def\faTrash{\symbol{"F014}}
+\def\faTrashO{\symbol{"F014}}
 \def\faHome{\symbol{"F015}}
-\def\faFile{\symbol{"F016}}
-\def\faTime{\symbol{"F017}}
+\def\faFileO{\symbol{"F016}}
+\def\faClockO{\symbol{"F017}}
 \def\faRoad{\symbol{"F018}}
-\def\faDownloadAlt{\symbol{"F019}}
-\def\faDownload{\symbol{"F01A}}
-\def\faUpload{\symbol{"F01B}}
+\def\faDownload{\symbol{"F019}}
+\def\faArrowCircleODown{\symbol{"F01A}}
+\def\faArrowCircleOUp{\symbol{"F01B}}
 \def\faInbox{\symbol{"F01C}}
-\def\faPlayCircle{\symbol{"F01D}}
+\def\faPlayCircleO{\symbol{"F01D}}
 \def\faRepeat{\symbol{"F01E}}
-
 \def\faRefresh{\symbol{"F021}}
 \def\faListAlt{\symbol{"F022}}
 \def\faLock{\symbol{"F023}}
@@ -64,7 +62,6 @@
 \def\faBook{\symbol{"F02D}}
 \def\faBookmark{\symbol{"F02E}}
 \def\faPrint{\symbol{"F02F}}
-
 \def\faCamera{\symbol{"F030}}
 \def\faFont{\symbol{"F031}}
 \def\faBold{\symbol{"F032}}
@@ -76,19 +73,18 @@
 \def\faAlignRight{\symbol{"F038}}
 \def\faAlignJustify{\symbol{"F039}}
 \def\faList{\symbol{"F03A}}
-\def\faIndentLeft{\symbol{"F03B}}
-\def\faIndentRight{\symbol{"F03C}}
-\def\faFacetimeVideo{\symbol{"F03D}}
-\def\faPicture{\symbol{"F03E}}
-
+\def\faOutdent{\symbol{"F03B}}
+\def\faIndent{\symbol{"F03C}}
+\def\faVideoCamera{\symbol{"F03D}}
+\def\faPictureO{\symbol{"F03E}}
 \def\faPencil{\symbol{"F040}}
 \def\faMapMarker{\symbol{"F041}}
 \def\faAdjust{\symbol{"F042}}
 \def\faTint{\symbol{"F043}}
-\def\faEdit{\symbol{"F044}}
-\def\faShare{\symbol{"F045}}
-\def\faCheck{\symbol{"F046}}
-\def\faMove{\symbol{"F047}}
+\def\faPencilSquareO{\symbol{"F044}}
+\def\faShareSquareO{\symbol{"F045}}
+\def\faCheckSquareO{\symbol{"F046}}
+\def\faArrows{\symbol{"F047}}
 \def\faStepBackward{\symbol{"F048}}
 \def\faFastBackward{\symbol{"F049}}
 \def\faBackward{\symbol{"F04A}}
@@ -96,41 +92,38 @@
 \def\faPause{\symbol{"F04C}}
 \def\faStop{\symbol{"F04D}}
 \def\faForward{\symbol{"F04E}}
-
 \def\faFastForward{\symbol{"F050}}
 \def\faStepForward{\symbol{"F051}}
 \def\faEject{\symbol{"F052}}
 \def\faChevronLeft{\symbol{"F053}}
 \def\faChevronRight{\symbol{"F054}}
-\def\faPlusSign{\symbol{"F055}}
-\def\faMinusSign{\symbol{"F056}}
-\def\faRemoveSign{\symbol{"F057}}
-\def\faOkSign{\symbol{"F058}}
-\def\faQuestionSign{\symbol{"F059}}
-\def\faInfoSign{\symbol{"F05A}}
-\def\faScreenshot{\symbol{"F05B}}
-\def\faRemoveCircle{\symbol{"F05C}}
-\def\faOkCircle{\symbol{"F05D}}
-\def\faBanCircle{\symbol{"F05E}}
-
+\def\faPlusCircle{\symbol{"F055}}
+\def\faMinusCircle{\symbol{"F056}}
+\def\faTimesCircle{\symbol{"F057}}
+\def\faCheckCircle{\symbol{"F058}}
+\def\faQuestionCircle{\symbol{"F059}}
+\def\faInfoCircle{\symbol{"F05A}}
+\def\faCrosshairs{\symbol{"F05B}}
+\def\faTimesCircleO{\symbol{"F05C}}
+\def\faCheckCircleO{\symbol{"F05D}}
+\def\faBan{\symbol{"F05E}}
 \def\faArrowLeft{\symbol{"F060}}
 \def\faArrowRight{\symbol{"F061}}
 \def\faArrowUp{\symbol{"F062}}
 \def\faArrowDown{\symbol{"F063}}
-\def\faShareAlt{\symbol{"F064}}
-\def\faResizeFull{\symbol{"F065}}
-\def\faResizeSmall{\symbol{"F066}}
+\def\faShare{\symbol{"F064}}
+\def\faExpand{\symbol{"F065}}
+\def\faCompress{\symbol{"F066}}
 \def\faPlus{\symbol{"F067}}
 \def\faMinus{\symbol{"F068}}
 \def\faAsterisk{\symbol{"F069}}
-\def\faExclamationSign{\symbol{"F06A}}
+\def\faExclamationCircle{\symbol{"F06A}}
 \def\faGift{\symbol{"F06B}}
 \def\faLeaf{\symbol{"F06C}}
 \def\faFire{\symbol{"F06D}}
-\def\faEyeOpen{\symbol{"F06E}}
-
-\def\faEyeClose{\symbol{"F070}}
-\def\faWarningSign{\symbol{"F071}}
+\def\faEye{\symbol{"F06E}}
+\def\faEyeSlash{\symbol{"F070}}
+\def\faExclamationTriangle{\symbol{"F071}}
 \def\faPlane{\symbol{"F072}}
 \def\faCalendar{\symbol{"F073}}
 \def\faRandom{\symbol{"F074}}
@@ -140,84 +133,78 @@
 \def\faChevronDown{\symbol{"F078}}
 \def\faRetweet{\symbol{"F079}}
 \def\faShoppingCart{\symbol{"F07A}}
-\def\faFolderClose{\symbol{"F07B}}
+\def\faFolder{\symbol{"F07B}}
 \def\faFolderOpen{\symbol{"F07C}}
-\def\faResizeVertical{\symbol{"F07D}}
-\def\faResizeHorizontal{\symbol{"F07E}}
-
-\def\faBarChart{\symbol{"F080}}
-\def\faTwitterSign{\symbol{"F081}}
-\def\faFacebookSign{\symbol{"F082}}
+\def\faArrowsV{\symbol{"F07D}}
+\def\faArrowsH{\symbol{"F07E}}
+\def\faBarChartO{\symbol{"F080}}
+\def\faTwitterSquare{\symbol{"F081}}
+\def\faFacebookSquare{\symbol{"F082}}
 \def\faCameraRetro{\symbol{"F083}}
 \def\faKey{\symbol{"F084}}
 \def\faCogs{\symbol{"F085}}
 \def\faComments{\symbol{"F086}}
-\def\faThumbsUp{\symbol{"F087}}
-\def\faThumbsDown{\symbol{"F088}}
+\def\faThumbsOUp{\symbol{"F087}}
+\def\faThumbsODown{\symbol{"F088}}
 \def\faStarHalf{\symbol{"F089}}
-\def\faHeartEmpty{\symbol{"F08A}}
-\def\faSignout{\symbol{"F08B}}
-\def\faLinkedinSign{\symbol{"F08C}}
-\def\faPushpin{\symbol{"F08D}}
+\def\faHeartO{\symbol{"F08A}}
+\def\faSignOut{\symbol{"F08B}}
+\def\faLinkedinSquare{\symbol{"F08C}}
+\def\faThumbTack{\symbol{"F08D}}
 \def\faExternalLink{\symbol{"F08E}}
-
-\def\faSignin{\symbol{"F090}}
+\def\faSignIn{\symbol{"F090}}
 \def\faTrophy{\symbol{"F091}}
-\def\faGithubSign{\symbol{"F092}}
-\def\faUploadAlt{\symbol{"F093}}
-\def\faLemon{\symbol{"F094}}
+\def\faGithubSquare{\symbol{"F092}}
+\def\faUpload{\symbol{"F093}}
+\def\faLemonO{\symbol{"F094}}
 \def\faPhone{\symbol{"F095}}
-\def\faCheckEmpty{\symbol{"F096}}
-\def\faBookmarkEmpty{\symbol{"F097}}
-\def\faPhoneSign{\symbol{"F098}}
+\def\faSquareO{\symbol{"F096}}
+\def\faBookmarkO{\symbol{"F097}}
+\def\faPhoneSquare{\symbol{"F098}}
 \def\faTwitter{\symbol{"F099}}
 \def\faFacebook{\symbol{"F09A}}
 \def\faGithub{\symbol{"F09B}}
 \def\faUnlock{\symbol{"F09C}}
 \def\faCreditCard{\symbol{"F09D}}
 \def\faRss{\symbol{"F09E}}
-
-\def\faHdd{\symbol{"F0A0}}
+\def\faHddO{\symbol{"F0A0}}
 \def\faBullhorn{\symbol{"F0A1}}
-\def\faBell{\symbol{"F0A2}}
+\def\faBell{\symbol{"F0F3}}
 \def\faCertificate{\symbol{"F0A3}}
-\def\faHandRight{\symbol{"F0A4}}
-\def\faHandLeft{\symbol{"F0A5}}
-\def\faHandUp{\symbol{"F0A6}}
-\def\faHandDown{\symbol{"F0A7}}
-\def\faCircleArrowLeft{\symbol{"F0A8}}
-\def\faCircleArrowRight{\symbol{"F0A9}}
-\def\faCircleArrowUp{\symbol{"F0AA}}
-\def\faCircleArrowDown{\symbol{"F0AB}}
+\def\faHandORight{\symbol{"F0A4}}
+\def\faHandOLeft{\symbol{"F0A5}}
+\def\faHandOUp{\symbol{"F0A6}}
+\def\faHandODown{\symbol{"F0A7}}
+\def\faArrowCircleLeft{\symbol{"F0A8}}
+\def\faArrowCircleRight{\symbol{"F0A9}}
+\def\faArrowCircleUp{\symbol{"F0AA}}
+\def\faArrowCircleDown{\symbol{"F0AB}}
 \def\faGlobe{\symbol{"F0AC}}
 \def\faWrench{\symbol{"F0AD}}
 \def\faTasks{\symbol{"F0AE}}
-
 \def\faFilter{\symbol{"F0B0}}
 \def\faBriefcase{\symbol{"F0B1}}
-\def\faFullscreen{\symbol{"F0B2}}
-
-\def\faGroup{\symbol{"F0C0}}
+\def\faArrowsAlt{\symbol{"F0B2}}
+\def\faUsers{\symbol{"F0C0}}
 \def\faLink{\symbol{"F0C1}}
 \def\faCloud{\symbol{"F0C2}}
-\def\faBeaker{\symbol{"F0C3}}
-\def\faCut{\symbol{"F0C4}}
-\def\faCopy{\symbol{"F0C5}}
-\def\faPaperClip{\symbol{"F0C6}}
-\def\faSave{\symbol{"F0C7}}
-\def\faSignBlank{\symbol{"F0C8}}
-\def\faReorder{\symbol{"F0C9}}
+\def\faFlask{\symbol{"F0C3}}
+\def\faScissors{\symbol{"F0C4}}
+\def\faFilesO{\symbol{"F0C5}}
+\def\faPaperclip{\symbol{"F0C6}}
+\def\faFloppyO{\symbol{"F0C7}}
+\def\faSquare{\symbol{"F0C8}}
+\def\faBars{\symbol{"F0C9}}
 \def\faListUl{\symbol{"F0CA}}
 \def\faListOl{\symbol{"F0CB}}
 \def\faStrikethrough{\symbol{"F0CC}}
 \def\faUnderline{\symbol{"F0CD}}
 \def\faTable{\symbol{"F0CE}}
-
 \def\faMagic{\symbol{"F0D0}}
 \def\faTruck{\symbol{"F0D1}}
 \def\faPinterest{\symbol{"F0D2}}
-\def\faPinterestSign{\symbol{"F0D3}}
-\def\faGooglePlusSign{\symbol{"F0D4}}
+\def\faPinterestSquare{\symbol{"F0D3}}
+\def\faGooglePlusSquare{\symbol{"F0D4}}
 \def\faGooglePlus{\symbol{"F0D5}}
 \def\faMoney{\symbol{"F0D6}}
 \def\faCaretDown{\symbol{"F0D7}}
@@ -226,19 +213,544 @@
 \def\faCaretRight{\symbol{"F0DA}}
 \def\faColumns{\symbol{"F0DB}}
 \def\faSort{\symbol{"F0DC}}
-\def\faSortDown{\symbol{"F0DD}}
-\def\faSortUp{\symbol{"F0DE}}
-
-\def\faEnvelopeAlt{\symbol{"F0E0}}
+\def\faSortAsc{\symbol{"F0DD}}
+\def\faSortDesc{\symbol{"F0DE}}
+\def\faEnvelope{\symbol{"F0E0}}
 \def\faLinkedin{\symbol{"F0E1}}
 \def\faUndo{\symbol{"F0E2}}
-\def\faLegal{\symbol{"F0E3}}
-\def\faDashboard{\symbol{"F0E4}}
-\def\faCommentAlt{\symbol{"F0E5}}
-\def\faCommentsAlt{\symbol{"F0E6}}
+\def\faGavel{\symbol{"F0E3}}
+\def\faTachometer{\symbol{"F0E4}}
+\def\faCommentO{\symbol{"F0E5}}
+\def\faCommentsO{\symbol{"F0E6}}
 \def\faBolt{\symbol{"F0E7}}
 \def\faSitemap{\symbol{"F0E8}}
 \def\faUmbrella{\symbol{"F0E9}}
-\def\faPaste{\symbol{"F0EA}}
+\def\faClipboard{\symbol{"F0EA}}
+\def\faLightbulbO{\symbol{"F0EB}}
+\def\faExchange{\symbol{"F0EC}}
+\def\faCloudDownload{\symbol{"F0ED}}
+\def\faCloudUpload{\symbol{"F0EE}}
+\def\faUserMd{\symbol{"F0F0}}
+\def\faStethoscope{\symbol{"F0F1}}
+\def\faSuitcase{\symbol{"F0F2}}
+\def\faBellO{\symbol{"F0A2}}
+\def\faCoffee{\symbol{"F0F4}}
+\def\faCutlery{\symbol{"F0F5}}
+\def\faFileTextO{\symbol{"F0F6}}
+\def\faBuildingO{\symbol{"F0F7}}
+\def\faHospitalO{\symbol{"F0F8}}
+\def\faAmbulance{\symbol{"F0F9}}
+\def\faMedkit{\symbol{"F0FA}}
+\def\faFighterJet{\symbol{"F0FB}}
+\def\faBeer{\symbol{"F0FC}}
+\def\faHSquare{\symbol{"F0FD}}
+\def\faPlusSquare{\symbol{"F0FE}}
+\def\faAngleDoubleLeft{\symbol{"F100}}
+\def\faAngleDoubleRight{\symbol{"F101}}
+\def\faAngleDoubleUp{\symbol{"F102}}
+\def\faAngleDoubleDown{\symbol{"F103}}
+\def\faAngleLeft{\symbol{"F104}}
+\def\faAngleRight{\symbol{"F105}}
+\def\faAngleUp{\symbol{"F106}}
+\def\faAngleDown{\symbol{"F107}}
+\def\faDesktop{\symbol{"F108}}
+\def\faLaptop{\symbol{"F109}}
+\def\faTablet{\symbol{"F10A}}
+\def\faMobile{\symbol{"F10B}}
+\def\faCircleO{\symbol{"F10C}}
+\def\faQuoteLeft{\symbol{"F10D}}
+\def\faQuoteRight{\symbol{"F10E}}
+\def\faSpinner{\symbol{"F110}}
+\def\faCircle{\symbol{"F111}}
+\def\faReply{\symbol{"F112}}
+\def\faGithubAlt{\symbol{"F113}}
+\def\faFolderO{\symbol{"F114}}
+\def\faFolderOpenO{\symbol{"F115}}
+\def\faSmileO{\symbol{"F118}}
+\def\faFrownO{\symbol{"F119}}
+\def\faMehO{\symbol{"F11A}}
+\def\faGamepad{\symbol{"F11B}}
+\def\faKeyboardO{\symbol{"F11C}}
+\def\faFlagO{\symbol{"F11D}}
+\def\faFlagCheckered{\symbol{"F11E}}
+\def\faTerminal{\symbol{"F120}}
+\def\faCode{\symbol{"F121}}
+\def\faReplyAll{\symbol{"F122}}
+\def\faMailReplyAll{\symbol{"F122}}
+\def\faStarHalfO{\symbol{"F123}}
+\def\faLocationArrow{\symbol{"F124}}
+\def\faCrop{\symbol{"F125}}
+\def\faCodeFork{\symbol{"F126}}
+\def\faChainBroken{\symbol{"F127}}
+\def\faQuestion{\symbol{"F128}}
+\def\faInfo{\symbol{"F129}}
+\def\faExclamation{\symbol{"F12A}}
+\def\faSuperscript{\symbol{"F12B}}
+\def\faSubscript{\symbol{"F12C}}
+\def\faEraser{\symbol{"F12D}}
+\def\faPuzzlePiece{\symbol{"F12E}}
+\def\faMicrophone{\symbol{"F130}}
+\def\faMicrophoneSlash{\symbol{"F131}}
+\def\faShield{\symbol{"F132}}
+\def\faCalendarO{\symbol{"F133}}
+\def\faFireExtinguisher{\symbol{"F134}}
+\def\faRocket{\symbol{"F135}}
+\def\faMaxcdn{\symbol{"F136}}
+\def\faChevronCircleLeft{\symbol{"F137}}
+\def\faChevronCircleRight{\symbol{"F138}}
+\def\faChevronCircleUp{\symbol{"F139}}
+\def\faChevronCircleDown{\symbol{"F13A}}
+\def\faHtml5{\symbol{"F13B}}
+\def\faCss3{\symbol{"F13C}}
+\def\faAnchor{\symbol{"F13D}}
+\def\faUnlockAlt{\symbol{"F13E}}
+\def\faBullseye{\symbol{"F140}}
+\def\faEllipsisH{\symbol{"F141}}
+\def\faEllipsisV{\symbol{"F142}}
+\def\faRssSquare{\symbol{"F143}}
+\def\faPlayCircle{\symbol{"F144}}
+\def\faTicket{\symbol{"F145}}
+\def\faMinusSquare{\symbol{"F146}}
+\def\faMinusSquareO{\symbol{"F147}}
+\def\faLevelUp{\symbol{"F148}}
+\def\faLevelDown{\symbol{"F149}}
+\def\faCheckSquare{\symbol{"F14A}}
+\def\faPencilSquare{\symbol{"F14B}}
+\def\faExternalLinkSquare{\symbol{"F14C}}
+\def\faShareSquare{\symbol{"F14D}}
+\def\faCompass{\symbol{"F14E}}
+\def\faCaretSquareODown{\symbol{"F150}}
+\def\faCaretSquareOUp{\symbol{"F151}}
+\def\faCaretSquareORight{\symbol{"F152}}
+\def\faEur{\symbol{"F153}}
+\def\faGbp{\symbol{"F154}}
+\def\faUsd{\symbol{"F155}}
+\def\faInr{\symbol{"F156}}
+\def\faJpy{\symbol{"F157}}
+\def\faRub{\symbol{"F158}}
+\def\faKrw{\symbol{"F159}}
+\def\faBtc{\symbol{"F15A}}
+\def\faFile{\symbol{"F15B}}
+\def\faFileText{\symbol{"F15C}}
+\def\faSortAlphaAsc{\symbol{"F15D}}
+\def\faSortAlphaDesc{\symbol{"F15E}}
+\def\faSortAmountAsc{\symbol{"F160}}
+\def\faSortAmountDesc{\symbol{"F161}}
+\def\faSortNumericAsc{\symbol{"F162}}
+\def\faSortNumericDesc{\symbol{"F163}}
+\def\faThumbsUp{\symbol{"F164}}
+\def\faThumbsDown{\symbol{"F165}}
+\def\faYoutubeSquare{\symbol{"F166}}
+\def\faYoutube{\symbol{"F167}}
+\def\faXing{\symbol{"F168}}
+\def\faXingSquare{\symbol{"F169}}
+\def\faYoutubePlay{\symbol{"F16A}}
+\def\faDropbox{\symbol{"F16B}}
+\def\faStackOverflow{\symbol{"F16C}}
+\def\faInstagram{\symbol{"F16D}}
+\def\faFlickr{\symbol{"F16E}}
+\def\faAdn{\symbol{"F170}}
+\def\faBitbucket{\symbol{"F171}}
+\def\faBitbucketSquare{\symbol{"F172}}
+\def\faTumblr{\symbol{"F173}}
+\def\faTumblrSquare{\symbol{"F174}}
+\def\faLongArrowDown{\symbol{"F175}}
+\def\faLongArrowUp{\symbol{"F176}}
+\def\faLongArrowLeft{\symbol{"F177}}
+\def\faLongArrowRight{\symbol{"F178}}
+\def\faApple{\symbol{"F179}}
+\def\faWindows{\symbol{"F17A}}
+\def\faAndroid{\symbol{"F17B}}
+\def\faLinux{\symbol{"F17C}}
+\def\faDribbble{\symbol{"F17D}}
+\def\faSkype{\symbol{"F17E}}
+\def\faFoursquare{\symbol{"F180}}
+\def\faTrello{\symbol{"F181}}
+\def\faFemale{\symbol{"F182}}
+\def\faMale{\symbol{"F183}}
+\def\faGittip{\symbol{"F184}}
+\def\faSunO{\symbol{"F185}}
+\def\faMoonO{\symbol{"F186}}
+\def\faArchive{\symbol{"F187}}
+\def\faBug{\symbol{"F188}}
+\def\faVk{\symbol{"F189}}
+\def\faWeibo{\symbol{"F18A}}
+\def\faRenren{\symbol{"F18B}}
+\def\faPagelines{\symbol{"F18C}}
+\def\faStackExchange{\symbol{"F18D}}
+\def\faArrowCircleORight{\symbol{"F18E}}
+\def\faArrowCircleOLeft{\symbol{"F190}}
+\def\faCaretSquareOLeft{\symbol{"F191}}
+\def\faDotCircleO{\symbol{"F192}}
+\def\faWheelchair{\symbol{"F193}}
+\def\faVimeoSquare{\symbol{"F194}}
+\def\faTry{\symbol{"F195}}
 
-\def\faUserMd{\symbol{"F200}}
+\def\glass{{\FA \faGlass}}
+\def\music{{\FA \faMusic}}
+\def\search{{\FA \faSearch}}
+\def\envelopeO{{\FA \faEnvelopeO}}
+\def\heart{{\FA \faHeart}}
+\def\star{{\FA \faStar}}
+\def\starO{{\FA \faStarO}}
+\def\user{{\FA \faUser}}
+\def\film{{\FA \faFilm}}
+\def\thLarge{{\FA \faThLarge}}
+\def\th{{\FA \faTh}}
+\def\thList{{\FA \faThList}}
+\def\facheck{{\FA \faCheck}}
+\def\times{{\FA \faTimes}}
+\def\searchPlus{{\FA \faSearchPlus}}
+\def\searchMinus{{\FA \faSearchMinus}}
+\def\powerOff{{\FA \faPowerOff}}
+\def\signal{{\FA \faSignal}}
+\def\cog{{\FA \faCog}}
+\def\trashO{{\FA \faTrashO}}
+\def\home{{\FA \faHome}}
+\def\fileO{{\FA \faFileO}}
+\def\clockO{{\FA \faClockO}}
+\def\road{{\FA \faRoad}}
+\def\download{{\FA \faDownload}}
+\def\arrowCircleODown{{\FA \faArrowCircleODown}}
+\def\arrowCircleOUp{{\FA \faArrowCircleOUp}}
+\def\inbox{{\FA \faInbox}}
+\def\playCircleO{{\FA \faPlayCircleO}}
+\def\repeat{{\FA \faRepeat}}
+\def\refresh{{\FA \faRefresh}}
+\def\listAlt{{\FA \faListAlt}}
+\def\lock{{\FA \faLock}}
+\def\flag{{\FA \faFlag}}
+\def\headphones{{\FA \faHeadphones}}
+\def\volumeOff{{\FA \faVolumeOff}}
+\def\volumeDown{{\FA \faVolumeDown}}
+\def\volumeUp{{\FA \faVolumeUp}}
+\def\qrcode{{\FA \faQrcode}}
+\def\barcode{{\FA \faBarcode}}
+\def\tag{{\FA \faTag}}
+\def\tags{{\FA \faTags}}
+\def\book{{\FA \faBook}}
+\def\bookmark{{\FA \faBookmark}}
+\def\print{{\FA \faPrint}}
+\def\camera{{\FA \faCamera}}
+\def\fonticon{{\FA \faFont}}
+\def\bold{{\FA \faBold}}
+\def\italic{{\FA \faItalic}}
+\def\textHeight{{\FA \faTextHeight}}
+\def\textWidth{{\FA \faTextWidth}}
+\def\alignLeft{{\FA \faAlignLeft}}
+\def\alignCenter{{\FA \faAlignCenter}}
+\def\alignRight{{\FA \faAlignRight}}
+\def\alignJustify{{\FA \faAlignJustify}}
+\def\list{{\FA \faList}}
+\def\outdent{{\FA \faOutdent}}
+\def\indent{{\FA \faIndent}}
+\def\videoCamera{{\FA \faVideoCamera}}
+\def\pictureO{{\FA \faPictureO}}
+\def\pencil{{\FA \faPencil}}
+\def\mapMarker{{\FA \faMapMarker}}
+\def\adjust{{\FA \faAdjust}}
+\def\tint{{\FA \faTint}}
+\def\pencilSquareO{{\FA \faPencilSquareO}}
+\def\shareSquareO{{\FA \faShareSquareO}}
+\def\checkSquareO{{\FA \faCheckSquareO}}
+\def\arrows{{\FA \faArrows}}
+\def\stepBackward{{\FA \faStepBackward}}
+\def\fastBackward{{\FA \faFastBackward}}
+\def\backward{{\FA \faBackward}}
+\def\play{{\FA \faPlay}}
+\def\pause{{\FA \faPause}}
+\def\stop{{\FA \faStop}}
+\def\forward{{\FA \faForward}}
+\def\fastForward{{\FA \faFastForward}}
+\def\stepForward{{\FA \faStepForward}}
+\def\eject{{\FA \faEject}}
+\def\chevronLeft{{\FA \faChevronLeft}}
+\def\chevronRight{{\FA \faChevronRight}}
+\def\plusCircle{{\FA \faPlusCircle}}
+\def\minusCircle{{\FA \faMinusCircle}}
+\def\timesCircle{{\FA \faTimesCircle}}
+\def\checkCircle{{\FA \faCheckCircle}}
+\def\questionCircle{{\FA \faQuestionCircle}}
+\def\infoCircle{{\FA \faInfoCircle}}
+\def\crosshairs{{\FA \faCrosshairs}}
+\def\timesCircleO{{\FA \faTimesCircleO}}
+\def\checkCircleO{{\FA \faCheckCircleO}}
+\def\ban{{\FA \faBan}}
+\def\arrowLeft{{\FA \faArrowLeft}}
+\def\arrowRight{{\FA \faArrowRight}}
+\def\arrowUp{{\FA \faArrowUp}}
+\def\arrowDown{{\FA \faArrowDown}}
+\def\share{{\FA \faShare}}
+\def\expand{{\FA \faExpand}}
+\def\compress{{\FA \faCompress}}
+\def\plus{{\FA \faPlus}}
+\def\minus{{\FA \faMinus}}
+\def\asterisk{{\FA \faAsterisk}}
+\def\exclamationCircle{{\FA \faExclamationCircle}}
+\def\gift{{\FA \faGift}}
+\def\leaf{{\FA \faLeaf}}
+\def\fire{{\FA \faFire}}
+\def\eye{{\FA \faEye}}
+\def\eyeSlash{{\FA \faEyeSlash}}
+\def\exclamationTriangle{{\FA \faExclamationTriangle}}
+\def\plane{{\FA \faPlane}}
+\def\calendar{{\FA \faCalendar}}
+\def\random{{\FA \faRandom}}
+\def\comment{{\FA \faComment}}
+\def\magnet{{\FA \faMagnet}}
+\def\chevronUp{{\FA \faChevronUp}}
+\def\chevronDown{{\FA \faChevronDown}}
+\def\retweet{{\FA \faRetweet}}
+\def\shoppingCart{{\FA \faShoppingCart}}
+\def\folder{{\FA \faFolder}}
+\def\folderOpen{{\FA \faFolderOpen}}
+\def\arrowsV{{\FA \faArrowsV}}
+\def\arrowsH{{\FA \faArrowsH}}
+\def\barChartO{{\FA \faBarChartO}}
+\def\twitterSquare{{\FA \faTwitterSquare}}
+\def\facebookSquare{{\FA \faFacebookSquare}}
+\def\cameraRetro{{\FA \faCameraRetro}}
+\def\key{{\FA \faKey}}
+\def\cogs{{\FA \faCogs}}
+\def\comments{{\FA \faComments}}
+\def\thumbsOUp{{\FA \faThumbsOUp}}
+\def\thumbsODown{{\FA \faThumbsODown}}
+\def\starHalf{{\FA \faStarHalf}}
+\def\heartO{{\FA \faHeartO}}
+\def\signOut{{\FA \faSignOut}}
+\def\linkedinSquare{{\FA \faLinkedinSquare}}
+\def\thumbTack{{\FA \faThumbTack}}
+\def\externalLink{{\FA \faExternalLink}}
+\def\signIn{{\FA \faSignIn}}
+\def\trophy{{\FA \faTrophy}}
+\def\githubSquare{{\FA \faGithubSquare}}
+\def\upload{{\FA \faUpload}}
+\def\lemonO{{\FA \faLemonO}}
+\def\phone{{\FA \faPhone}}
+\def\squareO{{\FA \faSquareO}}
+\def\bookmarkO{{\FA \faBookmarkO}}
+\def\phoneSquare{{\FA \faPhoneSquare}}
+\def\twitter{{\FA \faTwitter}}
+\def\facebook{{\FA \faFacebook}}
+\def\github{{\FA \faGithub}}
+\def\unlock{{\FA \faUnlock}}
+\def\creditCard{{\FA \faCreditCard}}
+\def\rss{{\FA \faRss}}
+\def\hddO{{\FA \faHddO}}
+\def\bullhorn{{\FA \faBullhorn}}
+\def\bell{{\FA \faBell}}
+\def\certificate{{\FA \faCertificate}}
+\def\handORight{{\FA \faHandORight}}
+\def\handOLeft{{\FA \faHandOLeft}}
+\def\handOUp{{\FA \faHandOUp}}
+\def\handODown{{\FA \faHandODown}}
+\def\arrowCircleLeft{{\FA \faArrowCircleLeft}}
+\def\arrowCircleRight{{\FA \faArrowCircleRight}}
+\def\arrowCircleUp{{\FA \faArrowCircleUp}}
+\def\arrowCircleDown{{\FA \faArrowCircleDown}}
+\def\globe{{\FA \faGlobe}}
+\def\wrench{{\FA \faWrench}}
+\def\tasks{{\FA \faTasks}}
+\def\filter{{\FA \faFilter}}
+\def\briefcase{{\FA \faBriefcase}}
+\def\arrowsAlt{{\FA \faArrowsAlt}}
+\def\users{{\FA \faUsers}}
+\def\link{{\FA \faLink}}
+\def\cloud{{\FA \faCloud}}
+\def\flask{{\FA \faFlask}}
+\def\scissors{{\FA \faScissors}}
+\def\filesO{{\FA \faFilesO}}
+\def\paperclip{{\FA \faPaperclip}}
+\def\floppyO{{\FA \faFloppyO}}
+\def\square{{\FA \faSquare}}
+\def\bars{{\FA \faBars}}
+\def\listUl{{\FA \faListUl}}
+\def\listOl{{\FA \faListOl}}
+\def\strikethrough{{\FA \faStrikethrough}}
+\def\underline{{\FA \faUnderline}}
+\def\table{{\FA \faTable}}
+\def\magic{{\FA \faMagic}}
+\def\truck{{\FA \faTruck}}
+\def\pinterest{{\FA \faPinterest}}
+\def\pinterestSquare{{\FA \faPinterestSquare}}
+\def\googlePlusSquare{{\FA \faGooglePlusSquare}}
+\def\googlePlus{{\FA \faGooglePlus}}
+\def\money{{\FA \faMoney}}
+\def\caretDown{{\FA \faCaretDown}}
+\def\caretUp{{\FA \faCaretUp}}
+\def\caretLeft{{\FA \faCaretLeft}}
+\def\caretRight{{\FA \faCaretRight}}
+\def\columns{{\FA \faColumns}}
+\def\sort{{\FA \faSort}}
+\def\sortAsc{{\FA \faSortAsc}}
+\def\sortDesc{{\FA \faSortDesc}}
+\def\envelope{{\FA \faEnvelope}}
+\def\linkedin{{\FA \faLinkedin}}
+\def\undo{{\FA \faUndo}}
+\def\gavel{{\FA \faGavel}}
+\def\tachometer{{\FA \faTachometer}}
+\def\commentO{{\FA \faCommentO}}
+\def\commentsO{{\FA \faCommentsO}}
+\def\bolt{{\FA \faBolt}}
+\def\sitemap{{\FA \faSitemap}}
+\def\umbrella{{\FA \faUmbrella}}
+\def\clipboard{{\FA \faClipboard}}
+\def\lightbulbO{{\FA \faLightbulbO}}
+\def\exchange{{\FA \faExchange}}
+\def\cloudDownload{{\FA \faCloudDownload}}
+\def\cloudUpload{{\FA \faCloudUpload}}
+\def\userMd{{\FA \faUserMd}}
+\def\stethoscope{{\FA \faStethoscope}}
+\def\suitcase{{\FA \faSuitcase}}
+\def\bellO{{\FA \faBellO}}
+\def\coffee{{\FA \faCoffee}}
+\def\cutlery{{\FA \faCutlery}}
+\def\fileTextO{{\FA \faFileTextO}}
+\def\buildingO{{\FA \faBuildingO}}
+\def\hospitalO{{\FA \faHospitalO}}
+\def\ambulance{{\FA \faAmbulance}}
+\def\medkit{{\FA \faMedkit}}
+\def\fighterJet{{\FA \faFighterJet}}
+\def\beer{{\FA \faBeer}}
+\def\hSquare{{\FA \faHSquare}}
+\def\plusSquare{{\FA \faPlusSquare}}
+\def\angleDoubleLeft{{\FA \faAngleDoubleLeft}}
+\def\angleDoubleRight{{\FA \faAngleDoubleRight}}
+\def\angleDoubleUp{{\FA \faAngleDoubleUp}}
+\def\angleDoubleDown{{\FA \faAngleDoubleDown}}
+\def\angleLeft{{\FA \faAngleLeft}}
+\def\angleRight{{\FA \faAngleRight}}
+\def\angleUp{{\FA \faAngleUp}}
+\def\angleDown{{\FA \faAngleDown}}
+\def\desktop{{\FA \faDesktop}}
+\def\laptop{{\FA \faLaptop}}
+\def\tablet{{\FA \faTablet}}
+\def\mobile{{\FA \faMobile}}
+\def\circleO{{\FA \faCircleO}}
+\def\quoteLeft{{\FA \faQuoteLeft}}
+\def\quoteRight{{\FA \faQuoteRight}}
+\def\spinner{{\FA \faSpinner}}
+\def\circle{{\FA \faCircle}}
+\def\reply{{\FA \faReply}}
+\def\githubAlt{{\FA \faGithubAlt}}
+\def\folderO{{\FA \faFolderO}}
+\def\folderOpenO{{\FA \faFolderOpenO}}
+\def\smileO{{\FA \faSmileO}}
+\def\frownO{{\FA \faFrownO}}
+\def\mehO{{\FA \faMehO}}
+\def\gamepad{{\FA \faGamepad}}
+\def\keyboardO{{\FA \faKeyboardO}}
+\def\flagO{{\FA \faFlagO}}
+\def\flagCheckered{{\FA \faFlagCheckered}}
+\def\terminal{{\FA \faTerminal}}
+\def\code{{\FA \faCode}}
+\def\replyAll{{\FA \faReplyAll}}
+\def\mailReplyAll{{\FA \faMailReplyAll}}
+\def\starHalfO{{\FA \faStarHalfO}}
+\def\locationArrow{{\FA \faLocationArrow}}
+\def\crop{{\FA \faCrop}}
+\def\codeFork{{\FA \faCodeFork}}
+\def\chainBroken{{\FA \faChainBroken}}
+\def\question{{\FA \faQuestion}}
+\def\info{{\FA \faInfo}}
+\def\exclamation{{\FA \faExclamation}}
+\def\superscript{{\FA \faSuperscript}}
+\def\subscript{{\FA \faSubscript}}
+\def\eraser{{\FA \faEraser}}
+\def\puzzlePiece{{\FA \faPuzzlePiece}}
+\def\microphone{{\FA \faMicrophone}}
+\def\microphoneSlash{{\FA \faMicrophoneSlash}}
+\def\shield{{\FA \faShield}}
+\def\calendarO{{\FA \faCalendarO}}
+\def\fireExtinguisher{{\FA \faFireExtinguisher}}
+\def\rocket{{\FA \faRocket}}
+\def\maxcdn{{\FA \faMaxcdn}}
+\def\chevronCircleLeft{{\FA \faChevronCircleLeft}}
+\def\chevronCircleRight{{\FA \faChevronCircleRight}}
+\def\chevronCircleUp{{\FA \faChevronCircleUp}}
+\def\chevronCircleDown{{\FA \faChevronCircleDown}}
+\def\html5{{\FA \faHtml5}}
+\def\css3{{\FA \faCss3}}
+\def\anchor{{\FA \faAnchor}}
+\def\unlockAlt{{\FA \faUnlockAlt}}
+\def\bullseye{{\FA \faBullseye}}
+\def\ellipsisH{{\FA \faEllipsisH}}
+\def\ellipsisV{{\FA \faEllipsisV}}
+\def\rssSquare{{\FA \faRssSquare}}
+\def\playCircle{{\FA \faPlayCircle}}
+\def\ticket{{\FA \faTicket}}
+\def\minusSquare{{\FA \faMinusSquare}}
+\def\minusSquareO{{\FA \faMinusSquareO}}
+\def\levelUp{{\FA \faLevelUp}}
+\def\levelDown{{\FA \faLevelDown}}
+\def\checkSquare{{\FA \faCheckSquare}}
+\def\pencilSquare{{\FA \faPencilSquare}}
+\def\externalLinkSquare{{\FA \faExternalLinkSquare}}
+\def\shareSquare{{\FA \faShareSquare}}
+\def\compass{{\FA \faCompass}}
+\def\caretSquareODown{{\FA \faCaretSquareODown}}
+\def\caretSquareOUp{{\FA \faCaretSquareOUp}}
+\def\caretSquareORight{{\FA \faCaretSquareORight}}
+\def\eur{{\FA \faEur}}
+\def\gbp{{\FA \faGbp}}
+\def\usd{{\FA \faUsd}}
+\def\inr{{\FA \faInr}}
+\def\jpy{{\FA \faJpy}}
+\def\rub{{\FA \faRub}}
+\def\krw{{\FA \faKrw}}
+\def\btc{{\FA \faBtc}}
+\def\file{{\FA \faFile}}
+\def\fileText{{\FA \faFileText}}
+\def\sortAlphaAsc{{\FA \faSortAlphaAsc}}
+\def\sortAlphaDesc{{\FA \faSortAlphaDesc}}
+\def\sortAmountAsc{{\FA \faSortAmountAsc}}
+\def\sortAmountDesc{{\FA \faSortAmountDesc}}
+\def\sortNumericAsc{{\FA \faSortNumericAsc}}
+\def\sortNumericDesc{{\FA \faSortNumericDesc}}
+\def\thumbsUp{{\FA \faThumbsUp}}
+\def\thumbsDown{{\FA \faThumbsDown}}
+\def\youtubeSquare{{\FA \faYoutubeSquare}}
+\def\youtube{{\FA \faYoutube}}
+\def\xing{{\FA \faXing}}
+\def\xingSquare{{\FA \faXingSquare}}
+\def\youtubePlay{{\FA \faYoutubePlay}}
+\def\dropbox{{\FA \faDropbox}}
+\def\stackOverflow{{\FA \faStackOverflow}}
+\def\instagram{{\FA \faInstagram}}
+\def\flickr{{\FA \faFlickr}}
+\def\adn{{\FA \faAdn}}
+\def\bitbucket{{\FA \faBitbucket}}
+\def\bitbucketSquare{{\FA \faBitbucketSquare}}
+\def\tumblr{{\FA \faTumblr}}
+\def\tumblrSquare{{\FA \faTumblrSquare}}
+\def\longArrowDown{{\FA \faLongArrowDown}}
+\def\longArrowUp{{\FA \faLongArrowUp}}
+\def\longArrowLeft{{\FA \faLongArrowLeft}}
+\def\longArrowRight{{\FA \faLongArrowRight}}
+\def\apple{{\FA \faApple}}
+\def\windows{{\FA \faWindows}}
+\def\android{{\FA \faAndroid}}
+\def\linux{{\FA \faLinux}}
+\def\dribbble{{\FA \faDribbble}}
+\def\skype{{\FA \faSkype}}
+\def\foursquare{{\FA \faFoursquare}}
+\def\trello{{\FA \faTrello}}
+\def\female{{\FA \faFemale}}
+\def\male{{\FA \faMale}}
+\def\gittip{{\FA \faGittip}}
+\def\sunO{{\FA \faSunO}}
+\def\moonO{{\FA \faMoonO}}
+\def\archive{{\FA \faArchive}}
+\def\bug{{\FA \faBug}}
+\def\vk{{\FA \faVk}}
+\def\weibo{{\FA \faWeibo}}
+\def\renren{{\FA \faRenren}}
+\def\pagelines{{\FA \faPagelines}}
+\def\stackExchange{{\FA \faStackExchange}}
+\def\arrowCircleORight{{\FA \faArrowCircleORight}}
+\def\arrowCircleOLeft{{\FA \faArrowCircleOLeft}}
+\def\caretSquareOLeft{{\FA \faCaretSquareOLeft}}
+\def\dotCircleO{{\FA \faDotCircleO}}
+\def\wheelchair{{\FA \faWheelchair}}
+\def\vimeoSquare{{\FA \faVimeoSquare}}
+\def\try{{\FA \faTry}}
