@@ -46,7 +46,7 @@
   {\normalsize \FA \faBook} \,\,  Falster, FitzJohn, Brännström, Dieckmann, Westoby (2016) {\bf plant: A package for modelling forest trait ecology and evolution}. \emph{Methods in Ecology and Evolution} XX: XXX. doi: \href{http://doi.org/10.1111/2041-210X.12525}{10.1111/2041-210X.12525}\\
 
     \vspace{1.5em}
-  {\normalsize \FA \faStar} ``Application note'', about new package for R $\rightarrow$ {\plant}
+  {\normalsize \FA \faDesktop} \,\, An ``Application note'' about a new package for R, called ``{\plant}''
 
   \vspace{1.5em}
   {\normalsize \FA \faGithub} \,\,  \hrefp{https}{github.com/traitecoevo/plant} }
@@ -67,14 +67,15 @@
     ($(current page.north)+ (0cm, 0.2cm)$) {
     \includegraphics[width=1.1\paperwidth]{downloads/BCI.jpg}};
 
-  \node[anchor = west, text width=12cm, align=left] at ($(current page.west) + (0.25cm, -4cm)$) {
-  {\color{white} \Large A simulation model for exploring demographic phenomena}
+  \node[anchor = center, align=left] at ($(current page.center) + (0cm, -4cm)$) {
+ \resizebox{.9\paperwidth}{!}{%
+ \color{white} A simulation model for exploring demographic phenomena}
   };
 \end{tikzpicture}
 \end{frame}
 
 % NOTES
-\begin{frame}{Individual based model $\rightarrow$ key unit is individual plant}
+\begin{frame}{Individual-based model $\rightarrow$ start with single plant}
   \begin{center}
    \includegraphics<1>[height=.8\textheight]{figures/plantmodel-1}
   \end{center}
@@ -92,7 +93,7 @@
 % 4. (The key ingredient is how much carbon you fix; we consider light
 %    primarily as the limiting resource)
 
-\begin{frame}{Individual based model $\rightarrow$ rules about plant function}
+\begin{frame}{Individual-based model $\rightarrow$ rules about plant function}
   \begin{center}
    \includegraphics<1>[height=.8\textheight]{figures/plantmodel-7}
   \end{center}
@@ -110,7 +111,7 @@
 % depends on who grows around those plants, and so on.  This is the
 % key feedback]
 
-\begin{frame}{Competition within a patch --  due to shading}
+\begin{frame}{Competition due to shading}
   \begin{center}
     \includegraphics<1>[height=.8\textheight]{figures/lightenv-1}
     \includegraphics<2>[height=.8\textheight]{figures/lightenv-2}
@@ -119,15 +120,20 @@
 \end{frame}
 
 % NOTES:
-\begin{frame}{Individual patch scales to metapopulation}
+\begin{frame}{Plants compete within a patch}
   \begin{center}
    \includegraphics<1>[height=.8\textheight]{figures/patch-2}
-   \includegraphics<2>[height=.8\textheight]{figures/patch-3}
   \end{center}
 \end{frame}
 
 % NOTES:
-\begin{frame}{Multiple species possible via traits $\rightarrow$ a metacommunity}
+\begin{frame}{Many patches $\rightarrow$ a metapopulation}
+  \begin{center}
+   \includegraphics<1>[height=.8\textheight]{figures/patch-3}
+  \end{center}
+\end{frame}
+% NOTES:
+\begin{frame}{Multiple species (defined via traits) $\rightarrow$ a metacommunity}
   \begin{center}
    \includegraphics<1>[height=.8\textheight]{figures/patch-4}
   \end{center}
@@ -141,18 +147,18 @@
     ($(current page.center) + (0, 3cm)$) {%
   {\small
 
-  \begin{tabular}{ll}
+  \begin{tabular}{cl}
   1970-1990 & Stochastic gap models \\
             & {\footnotesize \; \color{grey} $\rightarrow$ e.g. \href{http://doi.org/10.2307/2258570}{Botkin 1972}, \href{https://books.google.com.au/books/about/A_theory_of_forest_dynamics.html?id=q5vwAAAAMAAJ&redir_esc=y}{Shugart 1984}} \\[2ex]
-  1990-2000 & Approximation with partial differential equations (PDEs) \\
+  1985-2000 & Approximation with partial differential equations (PDEs) \\
             & {\footnotesize \; \color{grey} $\rightarrow$  \href{https://books.google.com.au/books?id=MXz1CAAAQBAJ}{Metz \& Diekmann 1986}, \href{http://doi.org/10.2307/2261230}{Kohyama 1993}, \href{http://doi.org/10.1890/0012-9615(2001)071[0557:AMFSVD]2.0.CO;2}{Moorcroft \emph{et al.} 2001} }  \\[2ex]
   2000-2015 & Generic plant physiology, function driven by traits \\
             & {\footnotesize \; \color{grey} $\rightarrow$  \href{http://doi.org/10.1890/0012-9615(2001)071[0557:AMFSVD]2.0.CO;2}{Moorcroft \emph{et al.} 2001}, \href{http://doi.org/10.1146/annurev.ecolsys.33.010802.150452}{Westoby \emph{et al.} 2002}, \href{http://doi.org/10.1111/j.1365-2745.2010.01735.x}{Falster \emph{et al.} 2011}} \\[2ex]
-  2010-2015 & Higher resolution numerical methods for solving PDEs \\
+  2005-2015 & New numerical methods for solving PDEs \\
             & {\footnotesize \; \color{grey} $\rightarrow$ \href{http://doi.org/10.1016/j.apnum.2004.01.007}{Angulo \emph{et al.} 2004}, \href{http://doi.org/10.1016/j.camwa.2014.04.009}{2014} }\\[2ex]
   2010-2015 & New techniques for packaging, testing \& distributing code \\
             & {\footnotesize \; \color{grey} $\rightarrow$  \href{http://www.rcpp.org/}{Rcpp}, \href{https://github.com/richfitz/RcppR6}{RcppR6}, \href{https://github.com/traitecoevo/plant}{github}, \href{https://travis-ci.org/traitecoevo/plant}{Travis CI}} \\[4ex]
-   & Family of related models\\
+  {\plant} & One in a family of related models\\
    & {\footnotesize \; \color{grey} $\rightarrow$ e.g. \href{https://github.com/EDmodel/ED2}{ED}, \href{http://formind.org/model/}{FORMIND},  \href{http://iis4.nateko.lu.se/lpj-guess/}{LPJ-GUESS} } \\
   \end{tabular}
   }
@@ -169,17 +175,31 @@
   \end{tikzpicture}
 \end{frame}
 
-% NOTES:
+
+\begin{frame}{4 options for using {\plant}}
+\begin{tikzpicture}[remember picture, overlay]%
+  \node[anchor=north, align=center] at
+    ($(current page.center) + (0, 0.3\paperheight)$) {
+     \includegraphics[width=.9\paperwidth]{snippets/plant_options}
+    };
+  \end{tikzpicture}
+\end{frame}% NOTES:
 % 1. Consider species as vectors of traits
 % 2. Fitness is the expected number of offspring per individual, but
 %    varies depending on the number and types of other individuals.
 % 3. Throw in a bunch of seeds, and see how many seeds each seed
 %    produces.  Consider traits to be fixed through this part.  This
 %    is our "ecological black box"
-\begin{frame}{Designed to explore ``demography beyond the population''}
+\begin{frame}{``Demography beyond the population'' -- e.g. fitness}
   \begin{center}
     \includegraphics<1>[height=.8\textheight]{figures/fitness-3}
     \includegraphics<2>[height=.8\textheight]{figures/fitness-4}
+  \end{center}
+\end{frame}
+
+\begin{frame}{{\plant} integrates seed production over entire life-cycle}
+  \begin{center}
+    \includegraphics<1>[height=.8\textheight]{figures/paper-f3.pdf}
   \end{center}
 \end{frame}
 
@@ -198,7 +218,7 @@
 % 7. But this cycle really is all that is in the black box.
 
 
-\begin{frame}{Explore trait-based niche differentiation}
+\begin{frame}{Quantify trait-based niche differentiation (stable coexistence)}
   \begin{center}
     \includegraphics<1>[height=.8\textheight]{figures/paper-f5}
   \end{center}

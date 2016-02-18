@@ -41,7 +41,7 @@ figure_fitness_landscape <- function(data) {
 
   ## Start the plots:
   xlim <- c(0.05, 2.00)
-  ylim <- c(-2, max(unlist(w)))
+  ylim <- c(-3, 3)
 
   op <- par(mfrow=c(1, 1), mar=c(1.1, 4.1, .5, .5), oma=c(3.1, 0, 0, 0))
   on.exit(par(op))
@@ -56,17 +56,16 @@ figure_fitness_landscape <- function(data) {
   # points(communities$attractor1, 0, pch=19)
 
 
-  plot(lma, w$first, type="l", lty=2,
-       log="x", xlim=xlim, ylim=ylim, ylab="Fitness", las=1)
+  plot(NA, log="x", xlim=xlim, ylim=ylim, ylab="Fitness", las=1)
 
   mtext(expression("Leaf mass per unit leaf area"~("LMA;"~kg~m^-2)), 1, 3, cex=1)
-  lines(lma, w$second1, lty=3)
-  lines(lma, w$second2, lty=3)
-  lines(lma, w$attractor2)
+  # lines(lma, w$second1, lty=3)
+  # lines(lma, w$second2, lty=3)
+  lines(lma, w$attractor2, lwd=2, col="darkgreen")
   abline(h=0)
-  points(communities$first, 0, pch=1)
-  points(communities$attractor2[[1]], 0, pch=19)
+  # points(communities$first, 0, pch=1)
+   points(communities$attractor2[[1]], 0, pch=19)
   points(communities$attractor2[[2]], 0, pch=19)
-  points(communities$second1[[2]], 0)
-  points(communities$second2[[2]], 0, col="grey")
+  # points(communities$second1[[2]], 0)
+  # points(communities$second2[[2]], 0, col="grey")
 }

@@ -6,10 +6,13 @@
 \color{b-green}
 \color{b-grey}```r
 \color{b-green}library(plant)
+\color{b-green}
 \color{b-grey}# baseline control parameters
 \color{b-green}p0 <- scm_base_parameters('FF16')
+\color{b-green}
 \color{b-grey}# Add species with specified trait
-\color{b-green}p1 <- expand_parameters(trait_matrix(0.0825, 'lma'), p0, FALSE)
+\color{b-green}p1 <- expand_parameters(
+\color{b-green}         trait_matrix(0.08, 'lma'), p0, FALSE)
 \color{b-grey}# Run everything out to equilibrium
 \color{b-green}eq <- equilibrium_seed_rain(p1)
 \color{b-grey}```

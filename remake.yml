@@ -44,6 +44,7 @@ targets:
       - figures/patch-3.pdf
       - figures/patch-4.pdf
       - figures/paper-f5.pdf
+      - figures/paper-f3.pdf
 
   # downloads
   downloads/BCI.jpg:
@@ -54,12 +55,16 @@ targets:
     depends:
       - snippets/plant_package.pdf
       - snippets/plant_install.pdf
+      - snippets/plant_options.pdf
 
   snippets/plant_package.pdf:
     command: xelatex_build_clean("snippets/plant_package.tex")
 
   snippets/plant_install.pdf:
     command: xelatex_build_clean("snippets/plant_install.tex")
+
+  snippets/plant_options.pdf:
+    command: xelatex_build_clean("snippets/plant_options.tex")
 
   # data objects
   res:
@@ -73,6 +78,9 @@ targets:
 
   fitness_landscape_data:
     command: make_fitness_data()
+
+  patch_data:
+    command: make_patch_data()
 
   # figures
   figures/fitness-3.pdf:
@@ -128,4 +136,8 @@ targets:
 
   figures/paper-f5.pdf:
     command: figure_fitness_landscape(fitness_landscape_data)
-    plot: true
+    plot: 6by4
+
+  figures/paper-f3.pdf:
+    command: figure_patch(patch_data)
+    plot: 6by4

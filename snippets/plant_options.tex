@@ -1,0 +1,19 @@
+\documentclass[class=minimal,border=0]{standalone}
+\input{snippet}
+\begin{document}%
+\begin{BVerbatim}
+\color{b-grey}```r
+\color{b-blue} # Use default parameters
+\color{b-green} p <- scm_base_parameters('FF16')
+\color{b-green}
+\color{b-blue} # Change parameters
+\color{b-green} p$strategy_default <- modify_list(p$strategy_default, pars)
+\color{b-green}
+\color{b-blue} # Apply your own hyper-parameterisation
+\color{b-green} p$hyperpar <- my\_function(...)
+\color{b-green}
+\color{b-blue} # Add your own physiological model
+\color{b-green} p <- scm_base_parameters('XX17')
+\color{b-grey}```
+\end{BVerbatim}
+\end{document}
