@@ -4,7 +4,7 @@ This code repository contains code needed to reproduce the slides of a talk give
 
 Falster D, FitzJohn R, Brännström Å, Dieckmann U, Westoby M (2016) **plant: A package for modelling forest trait ecology and evolution**. *Methods in Ecology and Evolution* XX: XXX. [10.1111/2041-210X.12525](http://doi.org/10.1111/2041-210X.12525)
 
-**Slides**: A copy of the compiled presentation is available at [xxx](xxx).
+**Slides**: A copy of the compiled presentation is available at on figshare at DOI: [10.6084/m9.figshare.3422983.v3](http://doi.org/10.6084/m9.figshare.3422983.v3).
 
 # Rebuilding
 
@@ -44,7 +44,7 @@ remake::make()
 
 ## Converting to a pptx presentation
 
-OSX users can convert the compiled pdf to a pptx slide in terminal as follows.
+OSX users can (possibly) convert the compiled pdf to a pptx slide in terminal as follows.
 
 First convert the compiled pdf into images using ImageMagick’s `convert` function
 
@@ -58,3 +58,7 @@ Then use the included [automator workflow](http://automator.us/leopard/index.htm
 ```
 ls tmp/slide-*.jpg | sort -k2 -t- -n | /usr/bin/automator -i - scripts/make_ppt.wflow
 ```
+
+# Acknowledgments
+
+Sincere thanks to Rich FitzJohn who generated earlier versions of most figures and is a coauthor on the related paper.
