@@ -74,10 +74,13 @@ targets:
   # data objects
   res:
     command: simulation()
-  seed:
+
+  seed1:
     command:
       - get.pic("pics/acorn.eps")
-      - colour.picture(., I("black"))
+  seed:
+    command:
+      - colour.picture(seed1, I("black"))
   tree:
     command: get.pic("pics/tree.eps")
 
