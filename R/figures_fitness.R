@@ -56,7 +56,7 @@ figure_fitness_landscape <- function(data) {
   # points(communities$attractor1, 0, pch=19)
 
 
-  plot(NA, log="x", xlim=xlim, ylim=ylim, ylab="Fitness", las=1)
+  plot(NA, log="x", xlim=xlim, ylim=ylim, ylab="Fitness (across meta-community)", las=1)
 
   mtext(expression("Leaf mass per unit leaf area"~("LMA;"~kg~m^-2)), 1, 3, cex=1)
   # lines(lma, w$second1, lty=3)

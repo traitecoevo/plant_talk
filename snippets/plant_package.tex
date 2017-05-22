@@ -2,19 +2,17 @@
 \input{snippet}
 \begin{document}%
 \begin{BVerbatim}
-\color{b-blue}Load plant directly within R
-\color{b-green}
-\color{b-grey}```r
 \color{b-green}library(plant)
 \color{b-green}
-\color{b-grey}# baseline control parameters
-\color{b-green}p0 <- scm_base_parameters('FF16')
+\color{b-pink}# baseline control parameters
+\color{b-green}p0 <- scm_base_parameters()
 \color{b-green}
-\color{b-grey}# Add species with specified trait
+\color{b-pink}# Add species with specified traits
 \color{b-green}p1 <- expand_parameters(
-\color{b-green}         trait_matrix(0.08, 'lma'), p0, FALSE)
-\color{b-grey}# Run everything out to equilibrium
+\color{b-green}         trait_matrix(c(0.0825, 0.355), 'lma'),
+\color{b-green}          p0, FALSE)
+\color{b-green}
+\color{b-pink}# Equilibrium seed rain of meta-community
 \color{b-green}eq <- equilibrium_seed_rain(p1)
-\color{b-grey}```
 \end{BVerbatim}
 \end{document}

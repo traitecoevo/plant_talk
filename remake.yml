@@ -1,7 +1,6 @@
 packages:
   - plant
   - grImport
-  - callr
 
 sources:
   - R
@@ -29,10 +28,12 @@ targets:
   figures:
     depends:
       - downloads/BCI.jpg
+      - downloads/turtle.jpg
       - figures/fitness-3.pdf
       - figures/fitness-4.pdf
       - figures/lifecycle-1.pdf
       - figures/lifecycle-2.pdf
+      - figures/lifecycle-3.pdf
       - figures/plantmodel-1.pdf
       - figures/plantmodel-7.pdf
       - figures/lightenv-1.pdf
@@ -40,6 +41,7 @@ targets:
       - figures/lightenv-3.pdf
       - figures/blackbox.pdf
       - figures/blackbox-small.pdf
+      - figures/patch-1.pdf
       - figures/patch-2.pdf
       - figures/patch-3.pdf
       - figures/patch-4.pdf
@@ -49,6 +51,9 @@ targets:
   # downloads
   downloads/BCI.jpg:
     download: http://farm3.staticflickr.com/2834/8897796344_b96c5caea5_b_d.jpg
+
+  downloads/turtle.jpg:
+    download: http://www.jlynson.com/wp-content/uploads/rocket_turtle_01.jpg
 
   # Code snippets
   snippets:
@@ -97,6 +102,9 @@ targets:
   figures/lifecycle-2.pdf:
     command: fig.lifecycle(2, seed, tree)
     plot: 4by4
+  figures/lifecycle-3.pdf:
+    command: fig.lifecycle(3, seed, tree, res)
+    plot: 4by4
 
   figures/plantmodel-1.pdf:
     command: fig.plantmodel(1, tree, res)
@@ -115,16 +123,20 @@ targets:
     command: fig.lightenv(3, tree, res)
     plot: 6by4
 
+  figures/patch-1.pdf:
+    command: fig.patch(1, tree)
+    plot: 4by4
+
   figures/patch-2.pdf:
     command: fig.patch(2, tree)
     plot: 4by4
 
   figures/patch-3.pdf:
-    command: fig.patch(3, tree)
+    command: fig.metacommunity(1, tree)
     plot: 4by4
 
   figures/patch-4.pdf:
-    command: fig.patch(4, tree)
+    command: fig.metacommunity(2, tree)
     plot: 4by4
 
   figures/blackbox.pdf:

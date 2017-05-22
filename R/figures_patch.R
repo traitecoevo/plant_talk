@@ -28,7 +28,7 @@ figure_patch <- function(data) {
   rd1 <- rel(d1, -4)
   rd2 <- rel(d2, -4)
 
-  cols <- c("#e34a33", "#045a8d")
+  cols <- c("darkblue", "darkorange")
 
   col1 <- matrix(make_transparent(cols[[1]], rd1), nrow(d1))
   col2 <- matrix(make_transparent(cols[[2]], rd2), nrow(d2))
