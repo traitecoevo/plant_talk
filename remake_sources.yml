@@ -1,6 +1,4 @@
 plant:
   source: github
   repo: traitecoevo/plant
-callr:
-  source: github
-  repo: traitecoeco/callr
+
