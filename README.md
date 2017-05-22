@@ -2,9 +2,9 @@
 
 This code repository contains code needed to reproduce the slides of a talk given on 1st March 2016 in a webinar organised by the BES, to coincide with the release of our paper, appearing as part of the BES special issue [*"Demography beyond the population"*](http://onlinelibrary.wiley.com/subject/code/000046/homepage/cross_journal_special_feature.htm):
 
-Falster D, FitzJohn R, Brännström Å, Dieckmann U, Westoby M (2016) **plant: A package for modelling forest trait ecology and evolution**. *Methods in Ecology and Evolution* XX: XXX. [10.1111/2041-210X.12525](http://doi.org/10.1111/2041-210X.12525)
+Falster D, FitzJohn R, Brännström Å, Dieckmann U, Westoby M (2016) **plant: A package for modelling forest trait ecology and evolution**. *Methods in Ecology and Evolution* 7: 136–146. [10.1111/2041-210X.12525](http://doi.org/10.1111/2041-210X.12525)
 
-**Slides**: A copy of the compiled presentation is available at on figshare at DOI: [10.6084/m9.figshare.3422983.v3](http://doi.org/10.6084/m9.figshare.3422983.v3).
+**Slides**: A copy of the compiled presentation is available at on figshare at DOI: [10.6084/m9.figshare.3422983.v3](http://doi.org/10.6084/m9.figshare.3422983.v3). And you can [watch the video here](https://www.brighttalk.com/webcast/11201/190899)
 
 # Rebuilding
 
@@ -16,6 +16,8 @@ Fonts (all are freely downloadable)
 * [Yanone Kaffeesatz](https://www.google.com/fonts#UsePlace:use/Collection:Yanone+Kaffeesatz)
 * [Bitstream Vera Sans Mono](http://ftp.gnome.org/pub/GNOME/sources/ttf-bitstream-vera/1.10/)
 
+
+You will also need to have [ghostscript installed](https://www.ghostscript.com/download/gsdnld.html), for image manipulation.
 
 Making the pdf requires a reasonably complete XeLaTeX (and fontspec) installation (e.g. [MacTeX](https://tug.org/mactex/) for OSX or [MikTex](http://miktex.org/) for windows).
 
@@ -42,23 +44,6 @@ And then the slides:
 remake::make()
 ```
 
-## Converting to a pptx presentation
-
-OSX users can (possibly) convert the compiled pdf to a pptx slide in terminal as follows.
-
-First convert the compiled pdf into images using ImageMagick’s `convert` function
-
-```
-mkdir tmp
-convert -density 600x600 -resize 2048x1536 -quality 100 slides.pdf tmp/slide.jpg
-```
-
-Then use the included [automator workflow](http://automator.us/leopard/index.html) to make a pptx slideshow from the images.
-
-```
-ls tmp/slide-*.jpg | sort -k2 -t- -n | /usr/bin/automator -i - scripts/make_ppt.wflow
-```
-
-# Acknowledgments
+# Acknowledgements
 
 Sincere thanks to Rich FitzJohn who generated earlier versions of most figures and is a coauthor on the related paper.
